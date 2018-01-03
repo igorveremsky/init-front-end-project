@@ -57,6 +57,7 @@ module.exports = function(grunt) {
                     specify: 'assets/sass/app.scss',
                     sassDir: 'assets/sass',
                     cssDir: 'assets/css',
+                    fontsDir: 'assets/fonts',
                     noLineComments: true,
                     sourcemap: true
                 }
@@ -125,14 +126,16 @@ module.exports = function(grunt) {
                 files: [
                     'Gruntfile.js',
                     'assets/sass/app.scss',
-                    'assets/sass/*![vendor]/*.scss'
+                    'assets/sass/*/*.scss',
+                    '!assets/sass/vendor/*.scss'
                 ],
                 tasks: ['compass:app', 'cssmin:app']
             },
             js: {
                 files: [
                     'Gruntfile.js',
-                    'assets/js/*![vendor]/*.js'
+                    'assets/js/*/*.js',
+                    '!assets/js/vendor/*.js'
                 ],
                 tasks: ['concat:app', 'uglify:app']
             }

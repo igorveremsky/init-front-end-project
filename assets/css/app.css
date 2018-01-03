@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*------------------------------------------------------------------
 Base Styles
 */
@@ -10,6 +11,76 @@ Base Styles
 /*------------------------------------------------------------------
 Fonts
 */
+/*-------------------------------------------------------------------------
+Red Ring
+*/
+/**
+ * @license
+ * MyFonts Webfont Build ID 3132778, 2015-11-29T13:11:31-0500
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed ../webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: RedRing-Regular by Letterhead Studio-YG
+ * URL: http://www.myfonts.com/fonts/letterheadrussia/red-ring/regular/
+ * Copyright: Copyright (c) 2012 by Letterhead Studio Moscow. All rights reserved.
+ *
+ * Webfont: RedRing-Black by Letterhead Studio-YG
+ * URL: http://www.myfonts.com/fonts/letterheadrussia/red-ring/black/
+ * Copyright: Copyright (c) 2012 by Letterhead Studio Moscow. All rights reserved.
+ *
+ * Webfont: RedRing-Bold by Letterhead Studio-YG
+ * URL: http://www.myfonts.com/fonts/letterheadrussia/red-ring/bold/
+ * Copyright: Copyright (c) 2012 by Letterhead Studio Moscow. All rights reserved.
+ *
+ * Webfont: RedRing-Light by Letterhead Studio-YG
+ * URL: http://www.myfonts.com/fonts/letterheadrussia/red-ring/light/
+ * Copyright: Copyright (c) 2012 by Created by Letterhead Studio Moscow. All rights reserved.
+ *
+ * Webfont: RedRing-Medium by Letterhead Studio-YG
+ * URL: http://www.myfonts.com/fonts/letterheadrussia/red-ring/medium/
+ * Copyright: Copyright (c) 2012 by Letterhead Studio Moscow. All rights reserved.
+ *
+ *
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3132778
+ * Licensed pageviews: 10,000
+ *
+ * В© 2015 MyFonts Inc
+*/
+/* @import must be at top of file, otherwise CSS will not work */
+@font-face {
+  font-family: "RedRing";
+  src: url('/assets/fonts/RedRing/2FCD6A_1_0.eot?1513789284');
+  src: url('/assets/fonts/RedRing/2FCD6A_1_0.eot?&1513789284#iefix') format('embedded-opentype'), url('/assets/fonts/RedRing/2FCD6A_1_0.woff2?1513789284') format('woff2'), url('/assets/fonts/RedRing/2FCD6A_1_0.woff?1513789284') format('woff'), url('/assets/fonts/RedRing/2FCD6A_1_0.ttf?1513789284') format('truetype');
+  font-weight: 900;
+}
+@font-face {
+  font-family: "RedRing";
+  src: url('/assets/fonts/RedRing/2FCD6A_2_0.eot?1513789284');
+  src: url('/assets/fonts/RedRing/2FCD6A_2_0.eot?&1513789284#iefix') format('embedded-opentype'), url('/assets/fonts/RedRing/2FCD6A_2_0.woff2?1513789284') format('woff2'), url('/assets/fonts/RedRing/2FCD6A_2_0.woff?1513789284') format('woff'), url('/assets/fonts/RedRing/2FCD6A_2_0.ttf?1513789284') format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: "RedRing";
+  src: url('/assets/fonts/RedRing/2FCD6A_4_0.eot?1513789284');
+  src: url('/assets/fonts/RedRing/2FCD6A_4_0.eot?&1513789284#iefix') format('embedded-opentype'), url('/assets/fonts/RedRing/2FCD6A_4_0.woff2?1513789284') format('woff2'), url('/assets/fonts/RedRing/2FCD6A_4_0.woff?1513789284') format('woff'), url('/assets/fonts/RedRing/2FCD6A_4_0.ttf?1513789284') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: "RedRing";
+  src: url('/assets/fonts/RedRing/2FCD6A_0_0.eot?1513789284');
+  src: url('/assets/fonts/RedRing/2FCD6A_0_0.eot?&1513789284#iefix') format('embedded-opentype'), url('/assets/fonts/RedRing/2FCD6A_0_0.woff2?1513789284') format('woff2'), url('/assets/fonts/RedRing/2FCD6A_0_0.woff?1513789284') format('woff'), url('/assets/fonts/RedRing/2FCD6A_0_0.ttf?1513789284') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: "RedRing";
+  src: url('/assets/fonts/RedRing/2FCD6A_3_0.eot?1513789284');
+  src: url('/assets/fonts/RedRing/2FCD6A_3_0.eot?&1513789284#iefix') format('embedded-opentype'), url('/assets/fonts/RedRing/2FCD6A_3_0.woff2?1513789284') format('woff2'), url('/assets/fonts/RedRing/2FCD6A_3_0.woff?1513789284') format('woff'), url('/assets/fonts/RedRing/2FCD6A_3_0.ttf?1513789284') format('truetype');
+  font-weight: 300;
+}
 /*------------------------------------------------------------------
 Reset
 */
@@ -161,5 +232,20 @@ Main Styles
 /*------------------------------------------------------------------
 General
 */
+body {
+  color: #000;
+  font-family: "RedRing", sans-serif;
+}
+
+a {
+  color: #000;
+}
+a:hover {
+  color: #0223ff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000;
+}
 
 /*# sourceMappingURL=app.css.map */
