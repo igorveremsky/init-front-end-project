@@ -170,7 +170,7 @@ module.exports = function(grunt) {
                     data: {
                         cssVendorVersion: "0.0.5",
                         cssAppVersion: "1.0.0",
-                        jsVendorVersion: "0.5.0",
+                        jsVendorVersion: "0.6.0",
                         jsAppVersion: "1.0.0"
                     }
                 }
