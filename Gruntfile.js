@@ -42,6 +42,17 @@ module.exports = function(grunt) {
                         dest: 'assets/js/vendor/'
                     }
                 ]
+            },
+            // Copy latest lodash version to vendor js directory
+            lodashJs: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/lodash/',
+                        src: ['lodash.min.js'],
+                        dest: 'assets/js/vendor/'
+                    }
+                ]
             }
         },
 
@@ -96,7 +107,7 @@ module.exports = function(grunt) {
                 src: [
                     'assets/js/vendor/jquery.min.js',
                     //'assets/js/vendor/jquery-migrate.min.js',
-                    // 'assets/js/vendor/lodash.min.js',
+                    'assets/js/vendor/lodash.min.js',
                     // 'assets/js/vendor/floatlabels.js',
                     // 'assets/js/vendor/fresko.js',
                     // 'assets/js/vendor/googlemaps.infobox.min.js',
