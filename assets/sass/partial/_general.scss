@@ -1,13 +1,18 @@
 body {
-    color: $color-black;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    color: $color-full-black;
     font-family: "RedRing", sans-serif;
 }
 a {
-    color: $color-black;
+    color: $color-full-black;
     &:hover {
         color: $color-active;
     }
 }
 h1, h2, h3, h4, h5, h6 {
-    color: $color-black;
+    font-family: "RedRing", sans-serif;
+    color: $color-dark-black;
+    letter-spacing: normal;
+    margin: 0;
 }

@@ -1,2 +1,22 @@
-$color-black: #000; // black
+$breakpoints: (
+        'xxxl': 150em,
+        'xxl': 118em,
+        'xl': 90.063em,
+        'l': 75em,
+        'm': 64.063em,
+        's': 40.063em,
+        'show-menu': 1200px
+);
+
+$color-full-black: #000; // black
+$color-dark-black: #151515; // dark black
+$color-light-black: #242424; // light-black
+$color-dark-gray: #999999; // dark-gray
+$color-light-gray: #d4d4d4; // light-gray
+$color-dark-white: #eaeaea; // dark-white
+$color-light-white: #f9f9f9; // light-white
 $color-active: #0223ff; // blue(active)
+$color-light-green: #00efc9; // light-green
+$color-dark-green: #19c3ad; // dark-green
+
+$transition: cubic-bezier(.165, .840, .440, 1);

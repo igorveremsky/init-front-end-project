@@ -38,6 +38,8 @@ Red Ring
  * В© 2015 MyFonts Inc
 */
 /* @import must be at top of file, otherwise CSS will not work */
+//@import url("//hello.myfonts.net/count/2fcd6a");
+
 $includeFontName: 'RedRing';
 
 $fontWeightPath: (
@@ -47,8 +49,6 @@ $fontWeightPath: (
         400: '#{$includeFontName}/2FCD6A_0_0',
         300: '#{$includeFontName}/2FCD6A_3_0',
 );
-
-@import "compass/css3/font-face";
 
 @mixin iv-font-face($fontWeight) {
     @include font-face($includeFontName, font-files(

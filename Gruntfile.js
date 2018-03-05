@@ -3,6 +3,10 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        // Variables
+        htmlPartialPath: './partial',
+        assetsPath: './assets',
+
         // Front server connect
         connect: {
             server: {
@@ -90,7 +94,27 @@ module.exports = function(grunt) {
         concat: {
             vendor: {
                 src: [
-                    'assets/js/vendor/**'
+                    'assets/js/vendor/jquery.min.js',
+                    //'assets/js/vendor/jquery-migrate.min.js',
+                    // 'assets/js/vendor/lodash.min.js',
+                    // 'assets/js/vendor/floatlabels.js',
+                    // 'assets/js/vendor/fresko.js',
+                    // 'assets/js/vendor/googlemaps.infobox.min.js',
+                    // 'assets/js/vendor/jquery.foundation.plugins.js',
+                    // 'assets/js/vendor/modernizr.custom.min.js',
+                    // 'assets/js/vendor/jquery.fullpage.js',
+                    // 'assets/js/vendor/jquery.gmap.min.js',
+                    // 'assets/js/vendor/jquery.isotope.min.js',
+                    // 'assets/js/vendor/jquery.mousewheel.js',
+                    // 'assets/js/vendor/jquery.stellar.js',
+                    // 'assets/js/vendor/owl.carousel.js',
+                    // 'assets/js/vendor/perfect-scrollbar.js',
+                    // 'assets/js/vendor/scrolloverflow.min.js',
+                    // 'assets/js/vendor/skrollr.min.js',
+                    // 'assets/js/vendor/SmoothScroll.js',
+                    // 'assets/js/vendor/TweenMax.min.js',
+                    // 'assets/js/vendor/ScrollToPlugin.min.js',
+                    // 'assets/js/vendor/waypoints.min.js'
                 ],
                 dest: 'assets/js/vendor.js'
             },
@@ -120,13 +144,44 @@ module.exports = function(grunt) {
             }
         },
 
+        // HTML Build by partial
+        htmlbuild: {
+            app: {
+                src: '<%= htmlPartialPath %>/*.html',
+                options: {
+                    sections: {
+                        global: {
+                            head: '<%= htmlPartialPath %>/global/head.html',
+                            header: '<%= htmlPartialPath %>/global/header.html',
+                            footer: '<%= htmlPartialPath %>/global/footer.html'
+                        }
+                    },
+                    data: {
+                        cssVendorVersion: "0.0.5",
+                        cssAppVersion: "1.0.0",
+                        jsVendorVersion: "0.5.0",
+                        jsAppVersion: "1.0.0"
+                    }
+                }
+            }
+        },
+
         // Watch files changes
         watch: {
+            html: {
+                files: [
+                    'Gruntfile.js',
+                    'partial/*.html',
+                    'partial/**/*.html'
+                ],
+                tasks: ['htmlbuild']
+            },
             css: {
                 files: [
                     'Gruntfile.js',
                     'assets/sass/app.scss',
                     'assets/sass/*/*.scss',
+                    'assets/sass/*/*/*.scss',
                     '!assets/sass/vendor/*.scss'
                 ],
                 tasks: ['compass:app', 'cssmin:app']
@@ -138,6 +193,13 @@ module.exports = function(grunt) {
                     '!assets/js/vendor/*.js'
                 ],
                 tasks: ['concat:app', 'uglify:app']
+            },
+            jsVendor: {
+                files: [
+                    'Gruntfile.js',
+                    'assets/js/vendor/*.js'
+                ],
+                tasks: ['concat:vendor', 'uglify:vendor']
             }
         }
     });
@@ -150,9 +212,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-html-build');
 
     // Default task(s).
-    grunt.registerTask('default', ['copy', 'compass', 'cssmin', 'concat', 'uglify']);
+    grunt.registerTask('default', ['copy', 'compass', 'cssmin', 'concat', 'uglify', 'htmlbuild']);
     grunt.registerTask('front-dev', ['default', 'connect:server', 'watch']);
     grunt.registerTask('back-dev', ['default', 'watch']);
 };
