@@ -1,22 +1,146 @@
-$breakpoints: (
-        'xxxl': 150em,
-        'xxl': 118em,
-        'xl': 90.063em,
-        'l': 75em,
-        'm': 64.063em,
-        's': 40.063em,
-        'show-menu': 1200px
+// Responsive variables
+// Design screen size
+$screenWidth: 2560;
+$screenHeight: 1440;
+
+@function responsive-size-width($number) {
+    @return responsive-size($number, $screenWidth);
+}
+
+@function responsive-size-height($number) {
+    @return responsive-size($number, $screenHeight, vh);
+}
+
+// Design tablet size
+$tabletWidth: 768;
+$tabletHeight: 1024;
+
+@function responsive-size-width-tablet($number) {
+    @return responsive-size($number, $tabletWidth);
+}
+
+@function responsive-size-height-tablet($number) {
+    @return responsive-size($number, $tabletHeight, vh);
+}
+
+// Design phone size
+$phoneWidth: 320;
+$phoneHeight: 568;
+
+@function responsive-size-width-mobile($number) {
+    @return responsive-size($number, $phoneWidth);
+}
+
+@function responsive-size-height-mobile($number) {
+    @return responsive-size($number, $phoneHeight, vh);
+}
+
+// Grid breakpoints
+$grid-breakpoints: (
+        xs: 0,
+        sm: 560px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
 );
 
+// Grid containers
+// Content variables
+$gutterWidth: 70;
+$screenContainerWidth: (1920+$gutterWidth);
+$tabletContainerWidth: 720;
+$container-max-widths: (
+        sm: decimal-round($tabletContainerWidth / $tabletWidth, 4) * 100vw,
+        xl: decimal-round($screenContainerWidth / $screenWidth, 4) * 100vw,
+);
+
+// Grid columns
+$grid-columns: 12;
+$grid-gutter-width: decimal-round($gutterWidth / $screenWidth, 4) * 100vw;
+
+// Fonts
+$screenFontSize: 24;
+$tabletFontSize: 16;
+$mobileFontSize: 14;
+
+// Font breakpoints
+$font-breakpoints: (
+        sm: 16,
+        md: 30,
+        lg: 44,
+        xl: 60,
+);
+
+@function responsive-font-size($number) {
+    @return responsive-size($number, $screenFontSize, em, 2);
+}
+
+@function responsive-font-size-breakpoints($breakpoint) {
+    @if map-has-key($font-breakpoints, $breakpoint) {
+        @return responsive-font-size(map-get($font-breakpoints, $breakpoint));
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$font-breakpoints` map.";
+    }
+}
+
+@function responsive-font-size-fixed($number) {
+    @return responsive-size($number * ($screenFontSize/$mobileFontSize), $screenFontSize, em, 2);
+}
+
+// Titles
+// General
+$titles-font-sizes: (
+        h1: 140,
+        h2: 100,
+        h3: 60,
+        h4: 44,
+        h5: 33,
+);
+
+// Mobile
+$titles-font-sizes-mobile: (
+        h2: 40,
+);
+
+// Colors
 $color-full-black: #000; // black
 $color-dark-black: #151515; // dark black
-$color-light-black: #242424; // light-black
+$color-light-black: #2c2c2c; // light-black
 $color-dark-gray: #999999; // dark-gray
+$color-gray: #808080; // gray
 $color-light-gray: #d4d4d4; // light-gray
 $color-dark-white: #eaeaea; // dark-white
-$color-light-white: #f9f9f9; // light-white
-$color-active: #0223ff; // blue(active)
-$color-light-green: #00efc9; // light-green
-$color-dark-green: #19c3ad; // dark-green
+$color-light-white: #f3f3f3; // light-white
+$color-full-white: #fff; // full-white
 
-$transition: cubic-bezier(.165, .840, .440, 1);
+// Application colors
+$color-dark-brown: #1b1613; // dark-brown (header)
+$color-brown: #976e1d; // brown (active)
+$color-light-brown: #a98845; // light-brown (active)
+$color-bg-black: #29231e; // bg black
+$color-dirty-brown: #948678; // dirty brown (copyright)
+
+$color-animation-overlay: $color-brown; // title overlay color
+
+// Transitions
+$transition-duration-fast: .4s;
+$transition-duration-slow: 3s;
+$transition-timing-function: $easeInSine;
+
+// Scale
+$scaleMultiply: 1.2;
+
+// Space variables
+// Grid breakpoints
+$space-breakpoints: (
+        sm: 16,
+        md: 30,
+        lg: 40,
+);
+
+// Section spaces
+$sectionSpace: 240;
+$contentSpace: 100;
+$contentSpaceMobile: 60;
+$titleSpace: 50;

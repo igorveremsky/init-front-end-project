@@ -12,6 +12,8 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     //livereload: true,
+                    hostname: '0.0.0.0',
+                    //open: true,
                     port: 8000,
                     base: './'
                 }
@@ -43,13 +45,57 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            // Copy latest lodash version to vendor js directory
-            lodashJs: {
+            // Copy latest tweenlite js version to vendor js directory
+            easePackJs: {
                 files: [
                     {
                         expand: true,
-                        cwd: 'node_modules/lodash/',
-                        src: ['lodash.min.js'],
+                        cwd: 'node_modules/gsap/src/minified/easing',
+                        src: ['EasePack.min.js'],
+                        dest: 'assets/js/vendor/'
+                    }
+                ]
+            },
+            // Copy latest tweenlite js version to vendor js directory
+            cssGsap: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/gsap/src/minified/plugins',
+                        src: ['CSSPlugin.min.js'],
+                        dest: 'assets/js/vendor/'
+                    }
+                ]
+            },
+            // Copy latest tweenlite js version to vendor js directory
+            tweenLiteJs: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/gsap/src/minified',
+                        src: ['TweenLite.min.js'],
+                        dest: 'assets/js/vendor/'
+                    }
+                ]
+            },
+            // Copy latest tweenlite js version to vendor js directory
+            timelineLiteJs: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/gsap/src/minified',
+                        src: ['TimelineLite.min.js'],
+                        dest: 'assets/js/vendor/'
+                    }
+                ]
+            },
+            // Copy latest is in viewport js version to vendor js directory
+            isInViewportJs: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/is-in-viewport/lib',
+                        src: ['isInViewport.min.js'],
                         dest: 'assets/js/vendor/'
                     }
                 ]
@@ -106,26 +152,12 @@ module.exports = function(grunt) {
             vendor: {
                 src: [
                     'assets/js/vendor/jquery.min.js',
-                    //'assets/js/vendor/jquery-migrate.min.js',
-                    'assets/js/vendor/lodash.min.js',
-                    // 'assets/js/vendor/floatlabels.js',
-                    // 'assets/js/vendor/fresko.js',
-                    // 'assets/js/vendor/googlemaps.infobox.min.js',
-                    // 'assets/js/vendor/jquery.foundation.plugins.js',
-                    // 'assets/js/vendor/modernizr.custom.min.js',
-                    // 'assets/js/vendor/jquery.fullpage.js',
-                    // 'assets/js/vendor/jquery.gmap.min.js',
-                    // 'assets/js/vendor/jquery.isotope.min.js',
-                    // 'assets/js/vendor/jquery.mousewheel.js',
-                    // 'assets/js/vendor/jquery.stellar.js',
-                    // 'assets/js/vendor/owl.carousel.js',
-                    // 'assets/js/vendor/perfect-scrollbar.js',
-                    // 'assets/js/vendor/scrolloverflow.min.js',
-                    // 'assets/js/vendor/skrollr.min.js',
-                    // 'assets/js/vendor/SmoothScroll.js',
-                    // 'assets/js/vendor/TweenMax.min.js',
-                    // 'assets/js/vendor/ScrollToPlugin.min.js',
-                    // 'assets/js/vendor/waypoints.min.js'
+                    'assets/js/vendor/EasePack.min.js',
+                    'assets/js/vendor/CSSPlugin.min.js',
+                    'assets/js/vendor/TweenLite.min.js',
+                    'assets/js/vendor/TimelineLite.min.js',
+                    'assets/js/vendor/isInViewport.min.js',
+                    'assets/js/vendor/smoothScroll.js'
                 ],
                 dest: 'assets/js/vendor.js'
             },
@@ -168,10 +200,11 @@ module.exports = function(grunt) {
                         }
                     },
                     data: {
-                        cssVendorVersion: "0.0.5",
-                        cssAppVersion: "1.0.0",
-                        jsVendorVersion: "0.6.0",
-                        jsAppVersion: "1.0.0"
+                        appName: "Front End Demo Project",
+                        cssVendorVersion: "0.1.0",
+                        cssAppVersion: "0.13.0",
+                        jsVendorVersion: "0.7.0",
+                        jsAppVersion: "0.5.0"
                     }
                 }
             }
@@ -196,6 +229,14 @@ module.exports = function(grunt) {
                     '!assets/sass/vendor/*.scss'
                 ],
                 tasks: ['compass:app', 'cssmin:app']
+            },
+            cssVendor: {
+                files: [
+                    'Gruntfile.js',
+                    'assets/sass/vendor/*.scss',
+                    'assets/sass/vendor.scss'
+                ],
+                tasks: ['compass:vendor', 'cssmin:vendor']
             },
             js: {
                 files: [

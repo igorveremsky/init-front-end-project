@@ -1,0 +1,210 @@
+// general
+%block-horizontal {
+    @extend %colInner;
+}
+%block-thumbnail {
+    .thumbnail {
+        @extend %inner-glow-brown-sm;
+        @extend %animation-overlay-b;
+        overflow: hidden;
+        img {
+            @extend %transition-transform-slow;
+        }
+    }
+    &:hover {
+        .thumbnail {
+            img {
+                @include transform(scale($scaleMultiply));
+            }
+        }
+    }
+}
+// title
+%block-title-main {
+    display: inline-flex;
+    @extend %font-style-title;
+    @include responsive-font-size-title(h4);
+    @extend %text-ellipsis;
+}
+%block-title-additional {
+    display: inline-flex;
+    @extend %font-style-general;
+    font-size: 1em;
+    @extend %text-ellipsis;
+}
+%block-title-info {
+    @extend %font-style-title;
+    @extend %font-size-sm;
+    color: $color-light-brown;
+    @extend %text-ellipsis;
+}
+%block-titles {
+    .title {
+        &-main {
+            @extend %block-title-main;
+        }
+        &-additional {
+            @extend %block-title-additional;
+        }
+        &-info {
+            @extend %block-title-info;
+        }
+    }
+}
+// space
+%block-inner-space-lr {
+    @include space-responsive-padding-lr(55);
+}
+%block-inner-space-tb {
+    @include space-responsive-padding-tb(65);
+}
+%block-inner-space-round {
+    @extend %block-inner-space-tb;
+    @extend %block-inner-space-lr;
+}
+.block {
+    &-style {
+        &-1 {
+            position: relative;
+            @extend %block-thumbnail;
+            .content {
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                @extend %animation-appear-b;
+                @extend %bg-transparent-brown;
+                @extend %block-inner-space-round;
+                .title {
+                    display: inline-flex;
+                    @extend %font-style-general;
+                    @include responsive-font-size-title(h5);
+                }
+                hr {
+                    max-width: responsive-size-width(65);
+                    margin-left: 0;
+                    margin-right: auto;
+                    @extend %transition-transform-fast;
+                    @include space-responsive-margin-tb($titleSpace);
+                }
+                .excerpt {
+                    @extend %font-style-title;
+                }
+                .link {
+                    @extend %font-style-title;
+                }
+                @include breakpoint(sm) {
+                    .link, hr {
+                        display: none;
+                    }
+                }
+            }
+            &:hover {
+                .content {
+                    hr {
+                        @include transform(scale($scaleMultiply, 0.5) translateX(((-(1-$scaleMultiply))/4)*100%));
+                    }
+                }
+            }
+        }
+        &-2 {
+            @extend %block-horizontal;
+            @extend %block-thumbnail;
+            align-items: center;
+            .content {
+                @extend %animation-appear-b;
+                .title {
+                    @include responsive-font-size-title(h4);
+                    @extend %title-margin-b;
+                }
+                .excerpt {
+                    @extend %title-margin-b;
+                }
+                .link {
+                    @extend .btn-horizontal-default;
+                }
+            }
+        }
+        &-3 {
+            @extend %block-horizontal;
+            flex-wrap: nowrap;
+            align-items: center;
+            @extend %bg-transparent-black;
+            @extend %block-inner-space-lr;
+            @include space-responsive-padding-tb(40);
+            @extend %animation-appear-b;
+            border-bottom: solid 1px $color-light-black;
+            @extend %block-titles;
+            .title {
+                &-additional {
+                    color: $color-full-white;
+                }
+                &-info {
+                    @include space-responsive-width(60, mr);
+                }
+            }
+            .content {
+                margin-right: auto;
+                max-width: 80%;
+            }
+            .thumbnail {
+                .geometric-css {
+                    @extend %transition-transform-fast;
+                }
+            }
+            &:hover {
+                .thumbnail {
+                    .geometric-css {
+                        @include transform(scale($scaleMultiply));
+                    }
+                }
+            }
+        }
+        &-4 {
+            @extend %block-horizontal;
+            flex-wrap: nowrap;
+            align-items: center;
+            @extend %bg-transparent-black;
+            @extend %block-inner-space-round;
+            @extend %box-shadow-transparent-brown-sm;
+            @extend %block-titles;
+            @media (orientation: portrait) and (max-width: map-get($grid-breakpoints, sm)) {
+                flex-wrap: wrap;
+            }
+            .content {
+                padding-left: 0;
+                @extend %animation-appear-b;
+                .title {
+                    &-main {
+                        @extend %title-margin-b;
+                    }
+                }
+                .excerpt {
+                    @extend %title-margin-b;
+                    @include space-responsive-margin-r(90);
+                    @media (orientation: portrait) and (max-width: map-get($grid-breakpoints, sm)) {
+                        margin-right: 0;
+                    }
+                }
+            }
+            .thumbnail {
+                padding-right: 0;
+                border-radius: 50%;
+                @extend %animation-overlay-b;
+                @media (orientation: portrait) and (max-width: map-get($grid-breakpoints, sm)) {
+                    order: 0;
+                    @include space-responsive-padding-b($titleSpace);
+                }
+                img {
+                    @extend %transition-transform-fast;
+                }
+            }
+            &:hover {
+                .thumbnail {
+                    img {
+                        @include transform(scale($scaleMultiply));
+                    }
+                }
+            }
+        }
+    }
+}

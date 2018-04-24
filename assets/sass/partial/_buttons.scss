@@ -1,0 +1,108 @@
+.btn {
+    &-figure {
+        &-circle {
+            position: relative;
+            display: block;
+            width: responsive-size-height(82);
+            height: responsive-size-height(82);
+            padding: responsive-size-height(10);
+            font-size: 0;
+            background: url("../img/btn-figure-circle-bg.png") center no-repeat;
+            background-size: contain;
+            @include breakpoint(sm) {
+                width: 60px;
+                height: 60px;
+                padding: 10px;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("../img/btn-figure-circle-bg-h.png") center no-repeat;
+                background-size: contain;
+                opacity: 0;
+                @extend %transition-opacity-fast;
+            }
+            &:hover:before {
+                opacity: 1;
+            }
+            span.icon {
+                z-index: 10;
+            }
+        }
+        &-line {
+            display: block;
+            max-width: responsive-size-height(600);
+            background: url("../img/btn-figure-line-bg.png") center no-repeat;
+            background-size: contain;
+            text-align: right;
+            padding: responsive-size-height(48) responsive-size-height(70) responsive-size-height(60) responsive-size-height(250);
+            line-height: 1;
+            @extend %text-ellipsis;
+        }
+    }
+    &-horizontal {
+        &-default {
+            @extend %btn;
+            @extend %font-size-sm;
+            @extend %btn-size-md;
+            @extend %btn-bg-transparent;
+            @extend %inner-glow-brown-md;
+            @extend %transition-all-fast;
+            &:hover,
+            &.active {
+                color: $color-full-white;
+                background-color: $color-dirty-brown;
+            }
+        }
+        display: flex;
+        align-items: center;
+        @extend %animation-appear-b;
+    }
+    $xlWidth: 110;
+    $xlSpace: 70;
+    &-size {
+        &-xl {
+            @extend %font-style-title;
+            @include responsive-font-size-title(h5);
+            svg, span.icon {
+                display: block;
+                width: responsive-size-width($xlWidth);
+                height: auto;
+                @include space-responsive-margin-r($xlSpace);
+                @include breakpoint(lg) {
+                    width: responsive-size-width-tablet(75);
+                }
+                @include breakpoint(sm) {
+                    width: 50px;
+                }
+            }
+            &:hover {
+                color: $color-full-white;
+            }
+        }
+    }
+    &-offset {
+        &-xl {
+            margin-left: -1*responsive-size-width($xlSpace+$xlWidth);
+            @include breakpoint(md) {
+                margin-left: 0;
+            }
+        }
+    }
+    $xlWidth: 400;
+    &-width {
+        &-fixed {
+            &-md {
+                width: responsive-size-width($xlWidth);
+                text-align: center;
+                @include breakpoint(md) {
+                    width: 280px;
+                }
+            }
+        }
+    }
+}

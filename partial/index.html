@@ -3,18 +3,488 @@
 <head>
     <!-- build:section global.head -->
     <!-- /build -->
-    <title>Front End Development</title>
     <!-- build:process -->
-    <link rel="stylesheet" href="<%= assetsPath %>/css/vendor.min.css?ver=<%= cssVendorVersion %>">
+    <title><%= appName %> Development</title>
+    <!-- /build -->
+    <!-- build:process -->
+    <link rel="stylesheet" href="<%= assetsPath %>/css/vendor.css?ver=<%= cssVendorVersion %>">
     <link rel="stylesheet" href="<%= assetsPath %>/css/app.css?ver=<%= cssAppVersion %>">
     <!-- /build -->
 </head>
 <body>
 <!-- build:section global.header -->
 <!-- /build -->
-<!-- Start content -->
-content
-<!-- End content -->
+<section class="banner-intro" style="background-image: url('./assets/img/intro-banner-bg.jpg');">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Игра №1 в жанре free-to-play HOPA</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <figure class="figure-banner-bottom">
+        <img class="relative bottom-center" src="./assets/img/intro-banner-bottom.png">
+        <div class="relative bottom-line"></div>
+        <img class="bottom-left" src="./assets/img/intro-banner-bl.png">
+        <img class="bottom-right" src="./assets/img/intro-banner-br.png">
+    </figure>
+    <div class="hot-news">
+        <a class="btn-figure-line font-style-title font-size-md" href="#">New update</a>
+    </div>
+    <div class="social">
+        <ul class="horizontal item-btn-figure-circle item-social-icon-figure">
+            <li>
+                <a class="appstore" href="#">
+                    <span class="icon"></span>
+                </a>
+            </li>
+            <li>
+                <a class="amazon" href="#">
+                    <span class="icon"></span>
+                </a>
+            </li>
+            <li>
+                <a class="google-plus" href="#">
+                    <span class="icon"></span>
+                </a>
+            </li>
+            <li>
+                <a class="facebook" href="#">
+                    <span class="icon"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="content featured-news">
+    <div class="container">
+        <div class="row">
+            <div class="col justify-content-center">
+                <h2 class="heading-main">This is important</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <article class="block-style-1">
+                    <div class="thumbnail">
+                        <img src="./assets/img/featured-news-1-thumbnail.jpg" alt="Featured News Demo Image">
+                    </div>
+                    <div class="content">
+                        <a href="news-single.html">
+                            <h3 class="title">Новые герои, кто они? И другие секреты последнего обновления
+                                известной</h3>
+                        </a>
+                        <hr>
+                        <a class="link" href="news-single.html">Читать подробнее</a>
+                    </div>
+                </article>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col">
+                <article class="block-style-1">
+                    <div class="thumbnail">
+                        <img src="./assets/img/featured-news-2-thumbnail.jpg" alt="Featured News Demo Image">
+                    </div>
+                    <div class="content">
+                        <a href="news-single.html">
+                            <h3 class="title">Новые герои, кто они? И другие секреты последнего обновления
+                                известной</h3>
+                        </a>
+                        <hr>
+                        <a class="link" href="news-single.html">Читать подробнее</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content content-background latest-news" style="background-image: url('./assets/img/right-bg.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-lg-6">
+                <h2 class="heading-main">Follow<br>The news</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <article class="block-style-2">
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="./assets/img/latest-news-1-thumbnail.jpg" alt="Latest News Demo Image">
+                        </div>
+                    </div>
+                    <div class="w-100 d-lg-none"></div>
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <a href="news-single.html">
+                                <h3 class="title">Как я стал зарабатывать на играх: Записки game-developer`а</h3>
+                            </a>
+                            <p class="excerpt">
+                                Возможно, ты всегда удивлялся, кто делает все те Flash-игрушки, которые в огромном
+                                количестве представлены в Сети. И главное — зачем? На самом деле все до банального просто:
+                                на этом люди зарабатывают деньги. Меня зовут Johnny-K, и я занимаюсь...
+                            </p>
+                            <a class="link" href="news-single.html">Подробнее</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <article class="block-style-2">
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="./assets/img/latest-news-2-thumbnail.jpg" alt="Latest News Demo Image">
+                        </div>
+                    </div>
+                    <div class="w-100 d-lg-none"></div>
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <a href="news-single.html">
+                                <h3 class="title">Как я стал зарабатывать на играх: Записки game-developer`а</h3>
+                            </a>
+                            <p class="excerpt">
+                                Возможно, ты всегда удивлялся, кто делает все те Flash-игрушки, которые в огромном
+                                количестве представлены в Сети. И главное — зачем? На самом деле все до банального просто:
+                                на этом люди зарабатывают деньги. Меня зовут Johnny-K, и я занимаюсь...
+                            </p>
+                            <a class="link" href="news-single.html">Подробнее</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <article class="block-style-2">
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="./assets/img/latest-news-3-thumbnail.jpg" alt="Latest News Demo Image">
+                        </div>
+                    </div>
+                    <div class="w-100 d-lg-none"></div>
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <a href="news-single.html">
+                                <h3 class="title">Как я стал зарабатывать на играх: Записки game-developer`а</h3>
+                            </a>
+                            <p class="excerpt">
+                                Возможно, ты всегда удивлялся, кто делает все те Flash-игрушки, которые в огромном
+                                количестве представлены в Сети. И главное — зачем? На самом деле все до банального просто:
+                                на этом люди зарабатывают деньги. Меня зовут Johnny-K, и я занимаюсь...
+                            </p>
+                            <a class="link" href="news-single.html">Подробнее</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <article class="block-style-2">
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="./assets/img/latest-news-4-thumbnail.jpg" alt="Latest News Demo Image">
+                        </div>
+                    </div>
+                    <div class="w-100 d-lg-none"></div>
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <a href="news-single.html">
+                                <h3 class="title">Как я стал зарабатывать на играх: Записки game-developer`а</h3>
+                            </a>
+                            <p class="excerpt">
+                                Возможно, ты всегда удивлялся, кто делает все те Flash-игрушки, которые в огромном
+                                количестве представлены в Сети. И главное — зачем? На самом деле все до банального просто:
+                                на этом люди зарабатывают деньги. Меня зовут Johnny-K, и я занимаюсь...
+                            </p>
+                            <a class="link" href="news-single.html">Подробнее</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <article class="block-style-2">
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="./assets/img/latest-news-5-thumbnail.jpg" alt="Latest News Demo Image">
+                        </div>
+                    </div>
+                    <div class="w-100 d-lg-none"></div>
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <a href="news-single.html">
+                                <h3 class="title">Как я стал зарабатывать на играх: Записки game-developer`а</h3>
+                            </a>
+                            <p class="excerpt">
+                                Возможно, ты всегда удивлялся, кто делает все те Flash-игрушки, которые в огромном
+                                количестве представлены в Сети. И главное — зачем? На самом деле все до банального просто:
+                                на этом люди зарабатывают деньги. Меня зовут Johnny-K, и я занимаюсь...
+                            </p>
+                            <a class="link" href="news-single.html">Подробнее</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content vacancy-roles">
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-6">
+                <h2 class="heading-main">Choose<br>Your role</h2>
+            </div>
+        </div>
+        <div class="row no-space vacancy-roles-list">
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Administration</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Administration</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Art, Animation & Sound</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Art, Animation & Sound</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Business Operations</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Business Operations</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Community, Marketing & Communications</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Community, Marketing & Communications</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Design</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Design</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Engineering & Technology</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Engineering & Technology</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Esports & Broadcasting</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Esports & Broadcasting</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Production, Program & Project Management</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">Production, Program & Project Management</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">QA, Localizations & CS</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-100 d-lg-none"></div>
+            <div class="col col-lg-6">
+                <a class="block-style-3" href="#">
+                    <div class="content">
+                        <h4 class="title-additional">QA, Localizations & CS</h4>
+                    </div>
+                    <p class="title-info">3 Jobs</p>
+                    <div class="thumbnail">
+                        <div class="geometric-css geometric-css-arrow-r"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content-footer">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col col-md-8">
+                <div class="content">
+                    <img class="square" src="./assets/img/g5-logo-square.png">
+                    <h5 class="title">При поддержке G5 Games Publishing</h5>
+                </div>
+            </div>
+            <div class="w-100 d-md-none"></div>
+            <div class="col col-md-4 justify-content-md-end">
+                <div class="social-horizontal">
+                    <p class="title">Connect with us</p>
+                    <ul class="horizontal">
+                        <li>
+                            <a class="icon" href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a class="icon" href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a class="icon" href="#"><i class="fa fa-facebook-square"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- build:section global.footer -->
 <!-- /build -->
 <!-- build:process -->

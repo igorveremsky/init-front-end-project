@@ -1,4 +1,5 @@
 @import "compass/css3";
+@import "compass/utilities";
 
 /*------------------------------------------------------------------
 Base Styles
@@ -6,6 +7,6 @@ Base Styles
 @import 'global/build';
 
 /*------------------------------------------------------------------
-Main Styles
+Application Styles
 */
 @import 'partial/build';

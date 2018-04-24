@@ -4,69 +4,136 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Typography</title>
     
-    <link rel="stylesheet" href="./assets/css/vendor.min.css?ver=0.0.5">
-    <link rel="stylesheet" href="./assets/css/app.css?ver=1.0.0">
+    <title>Front End Demo Project Typography</title>
+    
+    
+    <link rel="stylesheet" href="./assets/css/vendor.min.css?ver=0.1.0">
+    <link rel="stylesheet" href="./assets/css/app.css?ver=0.13.0">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        body {
+            color: #151515;
+            background: #fff;
         }
-        .heading:not(:last-child) {
-            margin-bottom: 100px;
+        h1,h2,h3,h4,h5 {
+            color: #000;
         }
-        .heading > *:not(p) {
-            padding: 20px;
-            margin-bottom: 10px;
+        .container {
+            margin-bottom: 80px;
         }
-        p {
+        .title {
+            font-family: "Times New Roman", sans-serif;
             font-size: 42px;
-            padding: 20px;
-        }
-        p.title {
+            padding: 20px 0;
             text-align: center;
             text-transform: uppercase;
             background: #ccc;
         }
-        p span {
+        p:not(.title) {
+            display: table;
+            padding-top: 40px;
+        }
+        p:not(.title) span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        h1,h2,h3,h4,h5 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        span {
+            font-size: 35px;
+            font-family: "RedRing", sans-serif;
             font-weight: normal;
-        }
-        .helios {
-            font-family: 'Helios', sans-serif;
-        }
-        .engravers {
-            font-family: 'EngraversGothic', sans-serif;
-        }
-        .narzisspro {
-            font-family: 'NarzissPro', sans-serif;
-        }
-        p.title {
-            font-family: 'RedRing', sans-serif;
+            color: #999;
+            padding-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="text-row heading">
-        <p class="title">HEADING</p>
-        <h1><span>H1</span> The spectacle before us was indeed sublime.</h1>
-        <h2><span>H2</span> The spectacle before us was indeed sublime.</h2>
-        <h3><span>H3</span> The spectacle before us was indeed sublime.</h3>
-        <h4><span>H4</span> The spectacle before us was indeed sublime.</h4>
-        <h5><span>H5</span> The spectacle before us was indeed sublime.</h5>
+<p class="title">HEADING</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1><span>H1</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.</h1>
+            <h2><span>H2</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.</h2>
+            <h3><span>H3</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.</h3>
+            <h4><span>H4</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.</h4>
+            <h5><span>H5</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.</h5>
+        </div>
     </div>
-    <div class="text-row red-ring">
-        <p class="title">FONT WEIGHT</p>
-        <p style="font-weight: 900"><span>900</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 800"><span>800</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 700"><span>700</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 600"><span>600</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 500"><span>500</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 400"><span>400</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 300"><span>300</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 200"><span>200</span> The spectacle before us was indeed sublime.</p>
-        <p style="font-weight: 100"><span>100</span> The spectacle before us was indeed sublime.</p>
+</div>
+<p class="title">GENERAL TEXT</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p style="font-weight: 900"><span>900</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 800"><span>800</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 700"><span>700</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 600"><span>600</span>At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 500"><span>500</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 400"><span>400</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 300"><span>300</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 200"><span>200</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+            <p style="font-weight: 100"><span>100</span> At Reynolds & Reyner, our approach to branding is rooted in the power of design.
+                We believe great design creates a higher quality brand experience, building meaningful
+                connections between a business and its customers. We deliver innovative design solutions
+                that tell our clients’ stories in visually compelling ways. Our talented team comes armed
+                with international experience, and will help you engage customers through effective branding,
+                regardless of where you call home.
+            </p>
+        </div>
     </div>
+</div>
 </body>
 </html>

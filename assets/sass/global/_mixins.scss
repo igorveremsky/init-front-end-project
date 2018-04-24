@@ -1,17 +1,11 @@
-@mixin mediaScreen($isMin: true) {
-    @media only screen and (min-width: $breakpoints) {
-        @content;
-    }
-}
-
-@mixin breakpoint($breakpoint, $isMin: true) {
-    @if map-has-key($breakpoints, $breakpoint) {
+@mixin breakpoint($breakpoint, $isMin: false) {
+    @if map-has-key($grid-breakpoints, $breakpoint) {
         @if($isMin) {
-            @media only screen and(min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @media only screen and (min-width: #{map-get($grid-breakpoints, $breakpoint)}) {
                 @content;
             }
         } @else {
-            @media only screen and(max-width: #{map-get($breakpoints, $breakpoint)}) {
+            @media only screen and (max-width: #{map-get($grid-breakpoints, $breakpoint)}) {
                 @content;
             }
         }
@@ -21,9 +15,187 @@
     }
 }
 
+// Space
+// General
+@mixin space($size, $size-mode: px, $css-style: ml) {
+    $space: $size * 1px;
+    @if ($size-mode == vw) {
+        $space: responsive-size($size, $screenWidth, vw);
+    } @else if ($size-mode == vh) {
+        $space: responsive-size($size, $screenHeight, vh);
+    }
+
+    @if ($css-style == ml) {
+        margin-left: $space;
+    } @else if ($css-style == mr) {
+        margin-right: $space;
+    } @else if ($css-style == mt) {
+        margin-top: $space;
+    } @else if ($css-style == mb) {
+        margin-bottom: $space;
+    } @else if ($css-style == mtb) {
+        margin-top: $space;
+        margin-bottom: $space;
+    } @else if ($css-style == mlr) {
+        margin-left: $space;
+        margin-right: $space;
+    } @else if ($css-style == plr) {
+        padding-left: $space;
+        padding-right: $space;
+    } @else if ($css-style == ptb) {
+        padding-top: $space;
+        padding-bottom: $space;
+    } @else if ($css-style == pb) {
+        padding-bottom: $space;
+    } @else if ($css-style == pt) {
+        padding-top: $space;
+    } @else if ($css-style == pl) {
+        padding-left: $space;
+    } @else if ($css-style == pr) {
+        padding-right: $space;
+    } @else {
+        @warn '#{ $css-style } is undefined keyword.';
+    }
+}
+
+
+@mixin space-breapoint($breakpoint, $size-mode: px, $css-style: ml) {
+    @if map-has-key($space-breakpoints, $breakpoint) {
+        $space-size: map-get($space-breakpoints, $breakpoint);
+        @include space($space-size, $size-mode, $css-style);
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$space-breakpoints` map.";
+    }
+}
+
+// Responsive
+@mixin space-responsive-height($size, $css-style: ml) {
+    @include space($size, vh, $css-style);
+}
+
+@mixin space-responsive-width($size, $css-style: ml) {
+    @include space($size, vw, $css-style);
+}
+
+// Responsive Padding
+@mixin space-responsive-padding-tb($size) {
+    @include space($size, vh, ptb);
+}
+
+@mixin space-responsive-padding-lr($size) {
+    @include space($size, vw, plr);
+}
+
+@mixin space-responsive-padding-b($size) {
+    @include space($size, vh, pb);
+}
+
+@mixin space-responsive-padding-t($size) {
+    @include space($size, vh, pt);
+}
+
+@mixin space-responsive-padding-round($size-lr, $size-tb) {
+    @include space-responsive-padding-tb($size-lr);
+    @include space-responsive-padding-lr($size-lr);
+}
+
+// Responsive Margin
+@mixin space-responsive-margin-tb($size) {
+    @include space($size, vh, mtb);
+}
+
+@mixin space-responsive-margin-t($size) {
+    @include space($size, vh, mt);
+}
+
+@mixin space-responsive-margin-b($size) {
+    @include space($size, vh, mb);
+}
+
+@mixin space-responsive-margin-l($size) {
+    @include space($size, vw, ml);
+}
+
+@mixin space-responsive-margin-r($size) {
+    @include space($size, vw, mr);
+}
+
+// Responsive font size
+@mixin responsive-font-size($number) {
+    font-size: responsive-font-size($number);
+}
+
+@mixin responsive-font-size-breakpoint($breakpoint) {
+    @if map-has-key($font-breakpoints, $breakpoint) {
+        $size: map-get($font-breakpoints, $breakpoint);
+        @include responsive-font-size($size);
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$space-breakpoints` map.";
+    }
+}
+
+// Titles
+@mixin responsive-font-size-title($breakpoint) {
+    @if map-has-key($titles-font-sizes, $breakpoint) {
+        $size: map-get($titles-font-sizes, $breakpoint);
+        @include responsive-font-size($size);
+        @if map-has-key($titles-font-sizes-mobile, $breakpoint) {
+            @include breakpoint(sm) {
+                font-size: map-get($titles-font-sizes-mobile, $breakpoint) * 1px;
+            }
+        }
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$titles-font-sizes` map.";
+    }
+}
+
+// Placeholder
 @mixin input-placeholder {
     &:-moz-placeholder { @content; }
     &::-moz-placeholder { @content; }
     &:-ms-input-placeholder { @content; }
     &::-webkit-input-placeholder { @content; }
+}
+
+@mixin space-responsive-width($size, $css-style: ml) {
+    @include space($size, vw, $css-style);
+}
+
+// Transition
+@mixin transition-custom($property: all, $duration: $transition-duration-fast, $function: $transition-timing-function) {
+    @include single-transition($property, $duration, $function);
+}
+
+// Animations
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation ($animationName, $animationDuration, $animationTimingFunction: ease-in-iout, $animationDelay: 0s, $isInfinite: true) {
+    $animationPlayState: forwards;
+
+    @if ($isInfinite) {
+        $animationPlayState: infinite;
+    }
+
+    -webkit-animation: $animationName $animationDuration $animationTimingFunction $animationDelay $animationPlayState;
+    -o-animation: $animationName $animationDuration $animationTimingFunction $animationDelay $animationPlayState;
+    animation: $animationName $animationDuration $animationTimingFunction $animationDelay $animationPlayState;
 }

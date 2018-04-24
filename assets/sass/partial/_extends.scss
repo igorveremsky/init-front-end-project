@@ -1,0 +1,226 @@
+// General
+%after-full {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
+// Size
+%screen-fullheight {
+    height: 100vh;
+}
+
+// Font
+// Style
+%font-style-general {
+    font-family: "RedRing", sans-serif;
+}
+%font-style-title {
+    font-family: "AngleciaPro", sans-serif;
+}
+
+// Size
+%font-size-sm {
+    @include responsive-font-size-breakpoint(sm);
+    @include breakpoint(sm) {
+        font-size: $mobileFontSize*1px;
+    }
+}
+%font-size-md {
+    @include responsive-font-size-breakpoint(md);
+}
+%font-size-lg {
+    @include responsive-font-size-breakpoint(lg);
+}
+%font-size-xl {
+    @include responsive-font-size-breakpoint(xl);
+}
+
+// Space
+// Content
+%content-padding-b {
+    @include space-responsive-padding-b($contentSpace);
+}
+%title-margin-b {
+    @include space-responsive-margin-b($titleSpace);
+}
+// Margin Left
+%margin-l-px-sm {
+    @include space-breapoint(sm);
+}
+%margin-l-px-md {
+    @include space-breapoint(md);
+}
+%margin-l-px-lg {
+    @include space-breapoint(lg);
+}
+// Margin Top and Bottom
+%margin-tb-px-sm {
+    @include space-breapoint(sm, px, mtb);
+}
+%margin-tb-px-md {
+    @include space-breapoint(md, px, mtb);
+}
+%margin-tb-px-lg {
+    @include space-breapoint(lg, px, mtb);
+}
+
+// Text
+%text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+%text-shadow-black-lg {
+    text-shadow: 7*sin(30deg)*1px 7*sin(60deg)*1px 7px rgba($color-full-black, .75);
+}
+
+%text-shadow-black-md {
+    text-shadow: 0 0 5px rgba($color-full-black, .75);
+}
+
+%text-align-center {
+    text-align: center;
+}
+
+// Box shadow
+%box-shadow-brown-md {
+    @include box-shadow(inset 0 0 3px 4px $color-brown);
+}
+
+%box-shadow-brown-sm {
+    @include box-shadow(inset 0px 0px 5px 2px $color-brown);
+}
+
+%box-shadow-transparent-brown-sm {
+    @include box-shadow(inset 0px 0px 5px 2px rgba($color-brown, .5));
+}
+
+// Buttons
+// Default
+%btn {
+    display: inline-block;
+    max-width: responsive-size-width(560);
+    @include breakpoint(md) {
+        max-width: 100%;
+    }
+    @extend %text-ellipsis;
+}
+
+// Size
+%btn-size-md {
+    @include space-responsive-padding-tb(30);
+    @include space(30, px, plr);
+}
+
+%btn-size-lg {
+    @include space-responsive-padding-tb(40);
+    @include space(35, px, plr);
+}
+
+// Backgrounds
+%btn-bg-transparent {
+    background: transparent;
+}
+
+/// Glows
+%inner-glow-brown-sm {
+    @extend %after-full;
+    &:after {
+        @extend %box-shadow-brown-sm;
+    }
+}
+
+%inner-glow-brown-md {
+    @extend %after-full;
+    &:after {
+        @extend %box-shadow-brown-md;
+    }
+}
+
+// Backgrounds
+%bg-transparent-brown {
+    background-color: rgba($color-dark-brown, 0.8);
+    @extend %transition-background_color-fast;
+    &:hover {
+        background-color: rgba($color-dark-brown, 1);
+    }
+}
+
+%bg-transparent-black {
+    background-color: rgba($color-bg-black, 0.6);
+    @extend %transition-background_color-fast;
+    &:hover {
+        background-color: rgba($color-dark-brown, 1);
+    }
+}
+
+// Transition
+// All
+%transition-all-fast {
+    @include transition-custom();
+}
+%transition-all-slow {
+    @include transition-custom(all, $transition-duration-slow);
+}
+// Color
+%transition-color-fast {
+    @include transition-custom(color);
+}
+// Opacity
+%transition-opacity-fast {
+    @include transition-custom(opacity);
+}
+// Transform
+%transition-transform-fast {
+    @include transition-custom(transform);
+}
+%transition-transform-slow {
+    @include transition-custom(transform, $transition-duration-slow, $linear);
+}
+// Background Color
+%transition-background_color-fast {
+    @include transition-custom(background-color);
+}
+%transition-background_color-slow {
+    @include transition-custom(background-color, $transition-duration-slow);
+}
+
+// Animations
+// Overlay
+%animation-overlay-l {
+    @include breakpoint(lg, true) {
+        opacity: 0;
+        &:before {
+            content: 'a-o-l';
+            display: none;
+        }
+    }
+}
+%animation-overlay-b {
+    @include breakpoint(lg, true) {
+        opacity: 0;
+        &:before {
+            content: 'a-o-b';
+            display: none;
+        }
+    }
+}
+
+// Appear
+%animation-appear-b {
+    @include breakpoint(lg, true) {
+        opacity: 0;
+        &:before {
+            content: 'a-a-b';
+            display: none;
+        }
+    }
+}

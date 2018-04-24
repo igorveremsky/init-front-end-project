@@ -1,0 +1,154 @@
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+// Bootstrap file imports
+@import "../../../node_modules/bootstrap-4-grid/scss/breakpoints/mixins/breakpoints";
+
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/functions";
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/variables";
+
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/mixins/breakpoints";
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/mixins/grid-framework";
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/mixins/grid";
+
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+@if $enable-grid-classes {
+    .container {
+        @include make-container();
+        @include make-container-max-widths();
+    }
+}
+
+// Grid breakpoints
+$grid-breakpoints: (
+        xs: 0,
+        sm: 560px,
+        md: 768px,
+        lg: 992px,
+);
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+@if $enable-grid-classes {
+    .row {
+        @include make-row();
+    }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes {
+    @include make-grid-columns();
+}
+
+
+// Utilities for common `display` values
+//
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .d#{$infix}-none         { display: none !important; }
+        .d#{$infix}-block        { display: block !important; }
+        .d#{$infix}-flex         { display: flex !important; }
+    }
+}
+
+// Flex variation
+//
+// Custom styles for additional flex alignment options.
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .justify-content#{$infix}-start   { justify-content: flex-start !important; }
+        .justify-content#{$infix}-end     { justify-content: flex-end !important; }
+        .justify-content#{$infix}-center  { justify-content: center !important; }
+        .justify-content#{$infix}-between { justify-content: space-between !important; }
+        .justify-content#{$infix}-around  { justify-content: space-around !important; }
+
+        .align-items#{$infix}-start    { align-items: flex-start !important; }
+        .align-items#{$infix}-end      { align-items: flex-end !important; }
+        .align-items#{$infix}-center   { align-items: center !important; }
+        .align-items#{$infix}-baseline { align-items: baseline !important; }
+        .align-items#{$infix}-stretch  { align-items: stretch !important; }
+    }
+}
+
+.w-100 {
+    width: 100%;
+}/*
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/bootstrap-grid";
+@import "../../../node_modules/bootstrap-4-grid/scss/sizing/utilities/sizing";
+@import "../../../node_modules/bootstrap-4-grid/scss/layout/utilities/spacing";
+@import "../../../node_modules/bootstrap-4-grid/scss/layout/mixins/visibility";
+@import "../../../node_modules/bootstrap-4-grid/scss/layout/utilities/visibility";
+/*
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/functions";
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/variables";
+
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/mixins/breakpoints";
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/mixins/grid-framework";
+@import "../../../node_modules/bootstrap-4-grid/scss/grid/mixins/grid";*/
+
+$colFixedGutterBreakPointKey: sm;
+$colFixedGutterBreakPoint: map_get($grid-breakpoints, $colFixedGutterBreakPointKey);
+%colInner {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    > [class*="col-"]:first-of-type {
+        padding-left: 0;
+    }
+    > [class*="col-"]:last-of-type {
+        padding-right: 0;
+    }
+    @include breakpoint($colFixedGutterBreakPointKey) {
+        > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+.col {
+    @extend %colInner;
+    @include breakpoint($colFixedGutterBreakPointKey) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.container {
+    > .row {
+        &:not(:last-child) {
+            @extend %content-padding-b;
+        }
+        &:not(.no-space) {
+            > .w-100 {
+                @extend %content-padding-b;
+            }
+            .w-100.d-lg-none,
+            .w-100.d-md-none {
+                @include space-responsive-padding-b($contentSpaceMobile);
+            }
+        }
+    }
+}

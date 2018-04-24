@@ -1,18 +1,82 @@
-body {
-    letter-spacing: 0.05em;
-    font-weight: 300;
-    color: $color-full-black;
-    font-family: "RedRing", sans-serif;
+* {
+    @include transition(width, height, border-width 1s $easeOutSine);
 }
-a {
-    color: $color-full-black;
+
+::-moz-selection {
+    background: $color-full-white;
+}
+
+::selection {
+    background: $color-full-white;
+}
+
+body {
+    @extend %font-style-general;
+    font-size: responsive-size-width($screenFontSize);
+    line-height: normal;
+    background: $color-full-black;
+    color: $color-full-white;
+    @include breakpoint(lg) {
+        font-size: $tabletFontSize * 1px;
+    }
+    @include breakpoint(md) {
+        font-size: $mobileFontSize * 1px;
+    }
+    cursor: url("../img/cursor++++.png"), auto;
+}
+
+%color-hover {
+    @extend %transition-color-fast;
     &:hover {
-        color: $color-active;
+        color: $color-brown;
     }
 }
-h1, h2, h3, h4, h5, h6 {
-    font-family: "RedRing", sans-serif;
-    color: $color-dark-black;
-    letter-spacing: normal;
-    margin: 0;
+
+a {
+    color: $color-full-white;
+    text-decoration: none;
+    @extend %color-hover;
+}
+
+a h1,
+a h2,
+a h3,
+a h4,
+a h5 {
+    @extend %color-hover;
+}
+
+p a {
+    color: $color-light-brown;
+    &:focus,
+    &:visited {
+        color: $color-brown;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    @extend %font-style-title;
+    color: $color-full-white;
+    line-height: normal;
+}
+
+@each $title-tag, $font-size in $titles-font-sizes {
+    #{$title-tag} {
+        @include responsive-font-size($font-size);
+    }
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+button:focus,
+[role="button"]:focus {
+    outline: 0;
+}
+
+hr {
+    border: solid 3/2*1px $color-full-white;
 }

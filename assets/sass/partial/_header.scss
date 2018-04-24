@@ -1,0 +1,147 @@
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    .content {
+        background: $color-dark-brown;
+        .logo {
+            max-width: 190px;
+            @include space(30, vh, mtb);
+        }
+        nav {
+            @extend %font-size-sm;
+            font-weight: 700;
+            text-transform: uppercase;
+            ul.horizontal {
+                li {
+                    @extend %margin-l-px-md;
+                    &.active {
+                        a {
+                            color: $color-brown;
+                        }
+                    }
+                }
+            }
+        }
+        .language-switcher {
+            @extend %font-size-sm;
+            @extend %margin-l-px-lg;
+            li {
+                @extend %margin-l-px-sm;
+                &.active {
+                    color: $color-gray;
+                }
+            }
+        }
+        .mobile-menu-wrapper {
+            @include breakpoint(md) {
+                position: fixed;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: $color-dark-brown;
+                @include transition-custom(opacity);
+                opacity: 0;
+                z-index: -1;
+                &.is-active {
+                    opacity: 1;
+                    z-index: auto;
+                }
+            }
+            nav {
+                ul.horizontal {
+                    display: block;
+                    li {
+                        @include space-responsive-margin-t($titleSpace);
+                        margin-left: 0;
+                        &:first-child {
+                            padding-top: 0;
+                        }
+                        &.active {
+                            a {
+                            }
+                        }
+                    }
+                }
+            }
+            .language-switcher {
+                @include space-responsive-margin-t($contentSpace);
+                margin-left: 0;
+                li {
+                    &.active {
+                    }
+                }
+            }
+        }
+    }
+}
+
+$hamburger-padding-x                       : 0;
+$hamburger-padding-y                       : 0;
+$hamburger-layer-width                     : 40px;
+$hamburger-layer-height                    : 4px;
+$hamburger-layer-spacing                   : 6px;
+$hamburger-layer-color                     : $color-full-white;
+$hamburger-layer-border-radius             : 4px;
+$hamburger-hover-opacity                   : 1;
+$hamburger-hover-transition-duration       : $transition-duration-fast;
+$hamburger-hover-transition-timing-function: $transition-timing-function;
+
+// To use CSS filters as the hover effect instead of opacity,
+// set $hamburger-hover-use-filter as true and
+// change the value of $hamburger-hover-filter accordingly.
+$hamburger-hover-use-filter: false;
+$hamburger-hover-filter    : opacity(50%);
+
+// Remove or comment out the hamburger types you don’t want
+// or need, so they get excluded from the compiled CSS.
+$hamburger-types: (
+        //3dx,
+        //3dx-r,
+        //3dy,
+        //3dy-r,
+        //3dxy,
+        //3dxy-r,
+        //arrow,
+        //arrow-r,
+        //arrowalt,
+        //arrowalt-r,
+        //arrowturn,
+        //arrowturn-r,
+        //boring,
+        collapse,
+        //collapse-r,
+        //elastic,
+        //elastic-r,
+        //emphatic,
+        //emphatic-r,
+        //minus,
+        //slider,
+        //slider-r,
+        //spring,
+        //spring-r,
+        //stand,
+        //stand-r,
+        //spin,
+        //spin-r,
+        //squeeze,
+        //vortex,
+        //vortex-r
+);
+
+@import "../../../node_modules/hamburgers/_sass/hamburgers/hamburgers";
+
+.figure-divider {
+    $size: 65;
+    height: responsive-size-height($size);
+    background:
+            url("../img/figure-divider-l.png") top left no-repeat,
+            url("../img/figure-divider-c.png") top center no-repeat,
+            url("../img/figure-divider-r.png") top right no-repeat,
+            url("../img/figure-divider-repeat.png") top left repeat-x;
+    background-size: contain, contain, contain, auto responsive-size-height($size/(80/12));
+}
