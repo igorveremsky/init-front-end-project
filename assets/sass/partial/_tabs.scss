@@ -1,0 +1,33 @@
+.tabs {
+    &:not(:first-child) {
+        @include space-responsive-margin-t($contentSpace);
+    }
+    @include row-content-space($contentInnerSpace);
+    .tab {
+        .title {
+            &-main {
+                @extend %animation-appear-b;
+                @extend %block-title-additional;
+                text-transform: uppercase;
+                background: url("../img/geometric/plus-black.svg") left bottom no-repeat;
+                background-size: 15px auto;
+                padding-left: $btnSpaceLR * 1px;
+            }
+        }
+        .content {
+            display: none;
+            @include space-responsive-margin-t($contentInnerSpace);
+        }
+        &.active {
+            .title {
+                &-main {
+                    background-image: url("../img/geometric/minus-black.svg");
+                    background-position: left 60%;
+                }
+            }
+            .content {
+                display: block;
+            }
+        }
+    }
+}

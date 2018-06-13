@@ -9,23 +9,8 @@ img {
             width: 50px;
         }
     }
-    &.round {
-        border-radius: 50%;
-    }
-}
-.inner-glow {
-    &-brown {
-        &-sm {
-            @extend %inner-glow-brown-sm;
-        }
-        &-md {
-            @extend %inner-glow-brown-md;
-        }
-    }
 }
 .video {
-    @extend %inner-glow-brown-sm;
-    @extend %animation-overlay-b;
     &-fullwidth {
         position: relative;
         width: 100%;
@@ -42,7 +27,7 @@ img {
 }
 span {
     &.underline {
-        border-bottom: solid 3px $color-full-white;
+        border-bottom: solid 3px $color-app-light;
     }
 }
 a {
@@ -78,4 +63,47 @@ a {
         background-color: $color-animation-overlay;
         z-index: 1;
     }
+}
+.rotate-90 {
+    @include transform(rotate(90deg) translateX(-25%));
+    @include breakpoint(md) {
+        @include transform(rotate(90deg) translateX(0));
+    }
+}
+.signature {
+    svg, img {
+        height: responsive-size-height($signatureHeight);
+        width: auto;
+    }
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    > *:not(:first-child) {
+        @include space-responsive-margin-t($contentInnerSpace);
+    }
+    &-center {
+        align-items: center;
+        justify-content: center;
+    }
+}
+.justify-content-center {
+    .content {
+        align-items: center;
+    }
+}
+.breadcrumbs {
+    $serSpace: 5px;
+    display: flex;
+    color: $color-app-dark;
+    a {
+        @extend %text-link-hint;
+    }
+    .separator {
+        @include space-responsive-margin-lr($serSpace);
+    }
+}
+.space-additional {
+    @include space-responsive-padding-tb($contentInnerSpace);
 }

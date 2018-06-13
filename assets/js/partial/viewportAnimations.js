@@ -1,20 +1,18 @@
 var ANIMATION_KEY_OVERLAY_LEFT = 'a-o-l';
 var ANIMATION_KEY_OVERLAY_BOTTOM = 'a-o-b';
 var ANIMATION_KEY_APPEAR_BOTTOM = 'a-a-b';
+var ANIMATION_KEY_APPEAR = 'a-a';
 
 var ANIMATION_OVERLAY_CLASS = 'animate-overlay';
 var ANIMATION_CONTENT_CLASS = 'animate-content';
 
-// Apeear variables
-var appearEase = Power2.easeOut;
-var appearDuration = .4;
-var appearCoordinateFrom = 100;
+// Appear variables
+var appearCoordinateFrom = 50;
 
 // Overlay variables
-var animationOverlayEase = Sine.easeInOut;
-
-// Fade variables
-var animationFadeEase = Sine.easeInOut;
+var animationBlockDuration = 1;
+var animationBlockDelay = .1;
+var overlayDuration = animationBlockDuration/2;
 
 function animateOverlayLeft(animateDom) {
     if (animateDom.is(':empty') || animateDom.hasClass('animate')) {
@@ -23,9 +21,9 @@ function animateOverlayLeft(animateDom) {
 
     animateDom.addClass('animate');
     var innerTagKey = (animateDom.is(':header') || animateDom.is(':text') || animateDom.is('a')) ? 'span' : 'div';
-    var overlayClassKey = '.'+ANIMATION_OVERLAY_CLASS+':first-child',
+    var overlayClassKey = '.' + ANIMATION_OVERLAY_CLASS + ':first-child',
         overlayDom = animateDom.find(overlayClassKey),
-        contentClassKey = '.'+ANIMATION_CONTENT_CLASS,
+        contentClassKey = '.' + ANIMATION_CONTENT_CLASS,
         contentDom = animateDom.find(contentClassKey);
 
     if (contentDom.length && overlayDom.length) {
@@ -33,30 +31,31 @@ function animateOverlayLeft(animateDom) {
     }
 
     if (!contentDom.length) {
-        animateDom.html('<'+innerTagKey+' class="'+ANIMATION_CONTENT_CLASS+'">'+animateDom.html()+'</'+innerTagKey+'>');
+        animateDom.html('<' + innerTagKey + ' class="' + ANIMATION_CONTENT_CLASS + '">' + animateDom.html() + '</' + innerTagKey + '>');
         contentDom = animateDom.find(contentClassKey);
     }
     if (!overlayDom.length) {
-        animateDom.prepend('<'+innerTagKey+' class="'+ANIMATION_OVERLAY_CLASS+'"></'+innerTagKey+'>');
+        animateDom.prepend('<' + innerTagKey + ' class="' + ANIMATION_OVERLAY_CLASS + '"></' + innerTagKey + '>');
         overlayDom = animateDom.find(overlayClassKey);
     }
-    var timeline = new TimelineLite();
+    var timeline = initAnimationTimeline();
     timeline.set(animateDom, {
         autoAlpha: 1
-    }).fromTo(overlayDom, animationDuration, {
+    }).fromTo(overlayDom, overlayDuration, {
         left: '-100%',
-        ease: animationOverlayEase
+        ease: animationTransformEase
     }, {
         left: '0%'
-    }).fromTo(contentDom, animationDuration, {
+    }).fromTo(contentDom, overlayDuration, {
         autoAlpha: 0,
         ease: animationFadeEase
     }, {
         autoAlpha: 1
-    }).to(overlayDom, animationDuration, {
+    }).to(overlayDom, overlayDuration, {
         left: '100%',
-        ease: animationOverlayEase
-    }, '-='+animationDuration);
+        ease: animationTransformEase
+    }, '-=' + overlayDuration);
+    addToViewPortTimeline(timeline);
 }
 
 function animateOverlayBottom(animateDom) {
@@ -66,9 +65,9 @@ function animateOverlayBottom(animateDom) {
 
     animateDom.addClass('animate');
     var innerTagKey = (animateDom.is(':header') || animateDom.is(':text') || animateDom.is('a')) ? 'span' : 'div';
-    var overlayClassKey = '.'+ANIMATION_OVERLAY_CLASS+':first-child',
+    var overlayClassKey = '.' + ANIMATION_OVERLAY_CLASS + ':first-child',
         overlayDom = animateDom.find(overlayClassKey),
-        contentClassKey = '.'+ANIMATION_CONTENT_CLASS,
+        contentClassKey = '.' + ANIMATION_CONTENT_CLASS,
         contentDom = animateDom.find(contentClassKey);
 
     if (contentDom.length && overlayDom.length) {
@@ -76,30 +75,31 @@ function animateOverlayBottom(animateDom) {
     }
 
     if (!contentDom.length) {
-        animateDom.html('<'+innerTagKey+' class="'+ANIMATION_CONTENT_CLASS+'">'+animateDom.html()+'</'+innerTagKey+'>');
+        animateDom.html('<' + innerTagKey + ' class="' + ANIMATION_CONTENT_CLASS + '">' + animateDom.html() + '</' + innerTagKey + '>');
         contentDom = animateDom.find(contentClassKey);
     }
     if (!overlayDom.length) {
-        animateDom.prepend('<'+innerTagKey+' class="'+ANIMATION_OVERLAY_CLASS+'"></'+innerTagKey+'>');
+        animateDom.prepend('<' + innerTagKey + ' class="' + ANIMATION_OVERLAY_CLASS + '"></' + innerTagKey + '>');
         overlayDom = animateDom.find(overlayClassKey);
     }
-    var timeline = new TimelineLite();
+    var timeline = initAnimationTimeline();
     timeline.set(animateDom, {
         autoAlpha: 1
-    }).fromTo(overlayDom, animationDuration, {
+    }).fromTo(overlayDom, overlayDuration, {
         top: '100%',
-        ease: animationOverlayEase
+        ease: animationTransformEase
     }, {
         top: '0%'
-    }).fromTo(contentDom, animationDuration, {
+    }).fromTo(contentDom, overlayDuration, {
         autoAlpha: 0,
         ease: animationFadeEase
     }, {
         autoAlpha: 1
-    }).to(overlayDom, animationDuration, {
+    }).to(overlayDom, overlayDuration, {
         top: '-100%',
-        ease: animationOverlayEase
-    }, '-='+animationDuration);
+        ease: animationTransformEase
+    }, '-=' + overlayDuration);
+    addToViewPortTimeline(timeline);
 }
 
 function animateAppearBottom(animateDom) {
@@ -108,15 +108,44 @@ function animateAppearBottom(animateDom) {
     }
     animateDom.addClass('animate');
 
-    var timeline = new TimelineLite();
-    timeline.fromTo(animateDom, appearDuration, {
-        opacity: 0,
+    var timeline = initAnimationTimeline();
+    timeline.fromTo(animateDom, animationBlockDuration, {
+        autoAlpha: 0,
         y: appearCoordinateFrom,
-        ease: appearEase
+        ease: animationTransformEase
     }, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0
     });
+    addToViewPortTimeline(timeline);
+}
+
+function animateAppear(animateDom) {
+    if (animateDom.hasClass('animate')) {
+        return !1;
+    }
+    animateDom.addClass('animate');
+
+    var timeline = initAnimationTimeline();
+    timeline.fromTo(animateDom, animationBlockDuration, {
+        autoAlpha: 0,
+        ease: animationFadeEase
+    }, {
+        autoAlpha: 1
+    });
+
+    addToViewPortTimeline(timeline);
+}
+
+function initAnimationTimeline() {
+    return new TimelineLite({
+        // paused: 1
+    });
+}
+
+function addToViewPortTimeline(timeline) {
+    var delay = (viewportTimeline.isActive()) ? "-="+(animationBlockDuration-animationBlockDelay) : "+="+animationBlockDelay;
+    viewportTimeline.add(timeline, delay);
 }
 
 !function ($, window) {
@@ -126,24 +155,37 @@ function animateAppearBottom(animateDom) {
         init: function () {
             var base = this, container = $(base.selector);
             container.each(function () {
-                var thatJsDom = this,
-                    that = $(this),
+                var that = $(this),
+                    thatJsDom = this,
                     before = window.getComputedStyle(thatJsDom, ':before'),
                     beforeContent = before.content.replace(/[\"\']/g, '');
-                    if (beforeContent === ANIMATION_KEY_OVERLAY_LEFT) {
-                        // In viewport
-                        animateOverlayLeft(that);
-                    }
-                    if (beforeContent === ANIMATION_KEY_OVERLAY_BOTTOM) {
-                        // In viewport
-                        animateOverlayBottom(that);
-                    }
-                    if (beforeContent === ANIMATION_KEY_APPEAR_BOTTOM) {
-                        // In viewport
-                        animateAppearBottom(that);
-                    }
-                    // console.log(viewportAnimationTimeline);
-                    // viewportAnimationTimeline.kill();
+
+                if (that.css('opacity') !== "0" || beforeContent === "") {
+                    return;
+                }
+
+                // that.fadeIn(500);
+                // console.log(that, beforeContent);
+                if (beforeContent === ANIMATION_KEY_OVERLAY_LEFT) {
+                    // In viewport
+                    animateOverlayLeft(that);
+                }
+                if (beforeContent === ANIMATION_KEY_OVERLAY_BOTTOM) {
+                    // In viewport
+                    animateOverlayBottom(that);
+                }
+                if (beforeContent === ANIMATION_KEY_APPEAR_BOTTOM) {
+                    // In viewport
+                    animateAppearBottom(that);
+                }
+                if (beforeContent === ANIMATION_KEY_APPEAR) {
+                    // In viewport
+                    animateAppear(that);
+                }
+                // viewportTimeline.play();
+                // viewportTimeline.play();
+                // console.log(viewportAnimationTimeline);
+                // viewportAnimationTimeline.kill();
             });
         }
     };

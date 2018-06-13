@@ -2,17 +2,18 @@
 [Table of contents]
 
 1. Extends
-2. General
-3. Re-usable
-4. Header
-5. Menu
-6. Banner
-7. Buttons
-8. Social icons
-10. Blocks
-11. Geometric figures
-12. Footer
-13. Google Map
+2. General -
+3. Reusable -
+4. Preloader -
+5. Buttons -
+6. Menu -
+7. Form -
+8. Tabs /
+9. Blocks -
+10 Header -
+11. Sections -
+12. Footer -
+13. Google Map /
 -------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------
@@ -31,19 +32,9 @@ Re-usable
 @import 'reusable';
 
 /*------------------------------------------------------------------
-Header
+Preloader
 */
-@import 'header';
-
-/*------------------------------------------------------------------
-Menu
-*/
-@import 'menu';
-
-/*------------------------------------------------------------------
-Buttons
-*/
-@import 'banner';
+@import 'preloader';
 
 /*------------------------------------------------------------------
 Buttons
@@ -51,14 +42,19 @@ Buttons
 @import 'buttons';
 
 /*------------------------------------------------------------------
-Social Icons
+Menu
 */
-@import 'social';
+@import 'menu';
 
 /*------------------------------------------------------------------
-Sections
+Form
 */
-@import 'section';
+@import 'form';
+
+/*------------------------------------------------------------------
+Tabs
+*/
+//@import 'tabs';
 
 /*------------------------------------------------------------------
 Blocks
@@ -66,9 +62,14 @@ Blocks
 @import 'blocks';
 
 /*------------------------------------------------------------------
-Geometric figures
+Header
 */
-@import 'geometric';
+@import 'header';
+
+/*------------------------------------------------------------------
+Sections
+*/
+@import 'sections';
 
 /*------------------------------------------------------------------
 Footer
@@ -78,4 +79,4 @@ Footer
 /*------------------------------------------------------------------
 Google Map
 */
-@import 'googleMap';
+//@import 'googleMap';

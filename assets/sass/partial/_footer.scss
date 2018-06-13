@@ -1,63 +1,28 @@
 footer {
-    border-top: solid 2px $color-light-brown;
-    background: $color-dark-brown;
     section {
         &.content {
-            @include space-responsive-padding-tb(100);
+            %footer-title {
+                @extend %font-style-title;
+                @include responsive-font-size-title(h5);
+            }
             .content {
-                width: 100%;
-                line-height: 2;
                 .title {
-                    display: inline-flex;
-                    color: $color-brown;
-                    @extend %font-style-general;
-                    @extend %font-size-sm;
-                    @extend %animation-overlay-l;
-                    font-style: italic;
-                    @include space-responsive-margin-b(50);
-                }
-                p, > a {
-                    @extend %font-style-title;
-                    @extend %font-size-sm;
-                    @extend %animation-appear-b;
-                }
-                p:not(:last-of-type) {
-                    @include space-responsive-padding-b(40);
-                }
-                > a {
-                    color: $color-light-brown;
-                    @extend %color-hover;
-                }
-                ul.horizontal {
-                    flex-wrap: wrap;
-                    @extend %animation-appear-b;
-                    @extend %font-style-title;
-                    @extend %font-size-sm;
-                    li {
-                        flex: 0 0 50%;
-                        max-width: 50%;
+                    &-main {
+                        @extend %footer-title;
                     }
                 }
+                .text {
+                    &-main {
+                        color: $color-app-gray;
+                    }
+                }
+            }
+            ul:not(.social) {
+                @extend %footer-title;
             }
         }
         &.copyright {
-            .container {
-                border-top: solid 1px $color-brown;
-                @include space-responsive-padding-tb(40);
-                @extend %animation-appear-b;
-            }
-            .content {
-                p {
-                    @extend %font-style-title;
-                    @extend %font-size-sm;
-                    color: $color-dirty-brown;
-                    a {
-                        color: $color-dirty-brown;
-                        @extend %color-hover;
-                        text-decoration: underline;
-                    }
-                }
-            }
+            padding-bottom: 0;
         }
     }
 }

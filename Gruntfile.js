@@ -34,6 +34,18 @@ module.exports = function(grunt) {
                     }
                 ]
             },
+            // Copy Font Awesome Fonts from node-modules to public directory
+            flagIcons: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/flag-icon-css/flags/',
+                        src: ['**/*'],
+                        dest: 'assets/img/flags',
+                        filter: 'isFile'
+                    }
+                ]
+            },
             // Copy latest jquery version to vendor js directory
             jqueryJs: {
                 files: [
@@ -99,6 +111,17 @@ module.exports = function(grunt) {
                         dest: 'assets/js/vendor/'
                     }
                 ]
+            },
+            // Copy latest is Wait for images js version to vendor js directory
+            waitForImagesJs: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/jquery.waitforimages/dist',
+                        src: ['jquery.waitforimages.min.js'],
+                        dest: 'assets/js/vendor/'
+                    }
+                ]
             }
         },
 
@@ -157,7 +180,8 @@ module.exports = function(grunt) {
                     'assets/js/vendor/TweenLite.min.js',
                     'assets/js/vendor/TimelineLite.min.js',
                     'assets/js/vendor/isInViewport.min.js',
-                    'assets/js/vendor/smoothScroll.js'
+                    'assets/js/vendor/smoothScroll.js',
+                    'assets/js/vendor/jquery.waitforimages.min.js'
                 ],
                 dest: 'assets/js/vendor.js'
             },
@@ -200,11 +224,11 @@ module.exports = function(grunt) {
                         }
                     },
                     data: {
-                        appName: "Front End Demo Project",
-                        cssVendorVersion: "0.1.0",
-                        cssAppVersion: "0.13.0",
-                        jsVendorVersion: "0.7.0",
-                        jsAppVersion: "0.5.0"
+                        appName: "Front-End",
+                        cssVendorVersion: "0.1.1",
+                        cssAppVersion: "0.1.0",
+                        jsVendorVersion: "0.8.0",
+                        jsAppVersion: "0.1.0"
                     }
                 }
             }

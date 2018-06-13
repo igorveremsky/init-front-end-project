@@ -1,25 +1,26 @@
-.google-map {
-    width: 100%;
-    height: 100%;
-}
-.contact-map {
-    width: 100%;
-    height: 100%;
-    border-bottom: solid responsive-size-height($bottomHeight) $color-full-black;
+.google-map-fullscreen {
+    %fullscreen {
+        width: 100%;
+        height: 100%;
+    }
+    @extend %fullscreen;
+    .google-map {
+        @extend %fullscreen;
+    }
 }
 // Hide Copyright
 a[href^="http://maps.google.com/maps"],
 a[href^="https://maps.google.com/maps"]{
-    display:none !important;
+    display: none !important;
 }
 .gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
+    display: none;
 }
 .gmnoprint div {
-    background:none !important;
+    background: none !important;
 }
 $pinWidth: 85;
-$pinImgSrc: "./assets/img/map-pin.png";
+$pinImgSrc: "./assets/img/map-pin.svg";
 img[src="#{$pinImgSrc}"] {
     width: responsive-size-width($pinWidth) !important;
     min-width: 30px;

@@ -1,78 +1,107 @@
+$headerSpace: 65;
 header {
-    position: fixed;
+    // Logo
+    $logoMaxWidth: 240px;
+    $logoMaxHeight: 80px;
+    $logoSpaceTB: 65;
+    // Navigation
+    $navSpace: 40;
+    $navFontSize: 20;
+    /*---------------*/
+    position: absolute;
     width: 100%;
     z-index: 10;
-    .content {
-        background: $color-dark-brown;
+    .up {
+        @extend %section-text-light;
+        position: relative;
+        z-index: 15;
+        background-color: transparent;
+        .row {
+            flex-wrap: nowrap;
+        }
         .logo {
-            max-width: 190px;
-            @include space(30, vh, mtb);
+            @extend %logo-wrap;
+            @include space-responsive-margin-tb($headerSpace);
         }
         nav {
-            @extend %font-size-sm;
-            font-weight: 700;
-            text-transform: uppercase;
             ul.horizontal {
-                li {
-                    @extend %margin-l-px-md;
+                @include space-responsive-margin-b($headerSpace);
+                > li {
+                    @include space-responsive-margin-l($navSpace);
+                    > a {
+                        @extend %font-style-title;
+                        font-size: responsive-font-size($navFontSize);
+                        text-transform: uppercase;
+                    }
                     &.active {
                         a {
-                            color: $color-brown;
+                            color: $color-app-active;
                         }
                     }
-                }
-            }
-        }
-        .language-switcher {
-            @extend %font-size-sm;
-            @extend %margin-l-px-lg;
-            li {
-                @extend %margin-l-px-sm;
-                &.active {
-                    color: $color-gray;
-                }
-            }
-        }
-        .mobile-menu-wrapper {
-            @include breakpoint(md) {
-                position: fixed;
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                background-color: $color-dark-brown;
-                @include transition-custom(opacity);
-                opacity: 0;
-                z-index: -1;
-                &.is-active {
-                    opacity: 1;
-                    z-index: auto;
-                }
-            }
-            nav {
-                ul.horizontal {
-                    display: block;
-                    li {
-                        @include space-responsive-margin-t($titleSpace);
-                        margin-left: 0;
-                        &:first-child {
-                            padding-top: 0;
-                        }
-                        &.active {
+                    ul {
+                        li {
                             a {
+                                color: $color-app-dark;
+                                @extend %hover-color-gray;
+                                font-size: responsive-font-size($navFontSize);
+                            }
+                            &.active {
+                                a {
+                                    color: $color-app-gray;
+                                    text-decoration: underline;
+                                }
                             }
                         }
                     }
+                    &.child-fullwidth {
+                        ul {
+                            @include space-responsive-padding-t($headerSpace + $contentSpace);
+                            opacity: 0;
+                            li {
+                                @extend %animation-appear-b;
+                            }
+                        }
+                    }
+                    &:not(.child-fullwidth) {
+                        ul {
+                            background-color: $color-app-active;
+                            @include space-responsive-padding-tb($headingSpace);
+                            @include space-responsive-margin-t($headerSpace);
+                            /*&.columns-2 {
+                                display: flex;
+                            }
+                            &.vertical {
+                                display: block;
+                            }*/
+                        }
+                    }
                 }
             }
-            .language-switcher {
-                @include space-responsive-margin-t($contentSpace);
-                margin-left: 0;
-                li {
-                    &.active {
+        }
+    }
+    .down {
+        display: none;
+        @include space-responsive-padding-tb($contentSpace);
+        background-color: $color-app-active;
+        color: $color-app-dark;
+        @include transform(translateY(-100%));
+        .signature {
+            @extend %animation-appear;
+        }
+    }
+    &.fixed {
+        position: fixed;
+        .up {
+            background-color: $color-app-dark;
+            nav {
+                ul.horizontal {
+                    > li {
+                        &:not(.child-fullwidth) {
+                            ul {
+                                margin-top: 0;
+                                border-top: solid responsive-size-height($headerSpace) $color-app-dark;
+                            }
+                        }
                     }
                 }
             }
@@ -135,13 +164,37 @@ $hamburger-types: (
 
 @import "../../../node_modules/hamburgers/_sass/hamburgers/hamburgers";
 
-.figure-divider {
-    $size: 65;
-    height: responsive-size-height($size);
-    background:
-            url("../img/figure-divider-l.png") top left no-repeat,
-            url("../img/figure-divider-c.png") top center no-repeat,
-            url("../img/figure-divider-r.png") top right no-repeat,
-            url("../img/figure-divider-repeat.png") top left repeat-x;
-    background-size: contain, contain, contain, auto responsive-size-height($size/(80/12));
+.mobile-menu-wrapper {
+    @include breakpoint(lg) {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 7;
+        background-color: $color-app-active;
+    }
+    nav {
+        ul {
+            @include space-responsive-margin-t($itemSpace);
+            &:first-child {
+                margin-top: 0;
+            }
+            &.horizontal {
+                display: block;
+                li {
+                    @include space-responsive-margin-t($itemSpace);
+                    margin-left: 0;
+                    &:first-child {
+                        padding-top: 0;
+                    }
+                }
+            }
+        }
+    }
 }

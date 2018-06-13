@@ -1,109 +1,120 @@
+// _decimal.scss | MIT License | gist.github.com/terkel/4373420
+
+// Round a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @param  {String} [$mode:round] (round|ceil|floor) How to round a number
+// @return {Number} A rounded number
+// @example
+//     decimal-round(0.333)    => 0
+//     decimal-round(0.333, 1) => 0.3
+//     decimal-round(0.333, 2) => 0.33
+//     decimal-round(0.666)    => 1
+//     decimal-round(0.666, 1) => 0.7
+//     decimal-round(0.666, 2) => 0.67
+//
+@function decimal-round($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
+/**
+    Calculate number with specific mode
+ */
+@function calculate($number, $mode: px, $responsive-size: 2560, $digits: 4) {
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+
+    @if not unitless($number) {
+        @return $number;
+    }
+
+    @if ($mode == vw) {
+        @return decimal-round($number/$responsive-size, $digits)*100vw;
+    } @else if ($mode == vh) {
+        @return decimal-round($number/$responsive-size, $digits)*100vh;
+    } @else if ($mode == em) {
+        @return decimal-round($number/$responsive-size, $digits)*1em;
+    } @else if ($mode == px) {
+        @return $number*1px;
+    } @else {
+        @warn '#{ $mode } incorrect calculate mode.';
+    }
+}
+
 // Responsive variables
+// Axes Size Unit
+$xSizeUnit: vw;
+$ySizeUnit: vh;
+
 // Design screen size
 $screenWidth: 2560;
 $screenHeight: 1440;
-
-@function responsive-size-width($number) {
-    @return responsive-size($number, $screenWidth);
-}
-
-@function responsive-size-height($number) {
-    @return responsive-size($number, $screenHeight, vh);
-}
 
 // Design tablet size
 $tabletWidth: 768;
 $tabletHeight: 1024;
 
-@function responsive-size-width-tablet($number) {
-    @return responsive-size($number, $tabletWidth);
-}
-
-@function responsive-size-height-tablet($number) {
-    @return responsive-size($number, $tabletHeight, vh);
-}
-
 // Design phone size
 $phoneWidth: 320;
 $phoneHeight: 568;
 
-@function responsive-size-width-mobile($number) {
-    @return responsive-size($number, $phoneWidth);
-}
-
-@function responsive-size-height-mobile($number) {
-    @return responsive-size($number, $phoneHeight, vh);
-}
-
-// Grid breakpoints
-$grid-breakpoints: (
-        xs: 0,
-        sm: 560px,
-        md: 768px,
-        lg: 992px,
-        xl: 1200px,
-);
-
-// Grid containers
-// Content variables
-$gutterWidth: 70;
-$screenContainerWidth: (1920+$gutterWidth);
-$tabletContainerWidth: 720;
-$container-max-widths: (
-        sm: decimal-round($tabletContainerWidth / $tabletWidth, 4) * 100vw,
-        xl: decimal-round($screenContainerWidth / $screenWidth, 4) * 100vw,
-);
-
-// Grid columns
-$grid-columns: 12;
-$grid-gutter-width: decimal-round($gutterWidth / $screenWidth, 4) * 100vw;
-
 // Fonts
-$screenFontSize: 24;
-$tabletFontSize: 16;
-$mobileFontSize: 14;
+// Responsive
+$screenFontSize: 18;
+$tabletFontSize: 14;
+$mobileFontSize: 12;
 
 // Font breakpoints
 $font-breakpoints: (
-        sm: 16,
-        md: 30,
-        lg: 44,
-        xl: 60,
+        sm: 14,
+        md: 20,
 );
 
-@function responsive-font-size($number) {
-    @return responsive-size($number, $screenFontSize, em, 2);
-}
-
-@function responsive-font-size-breakpoints($breakpoint) {
-    @if map-has-key($font-breakpoints, $breakpoint) {
-        @return responsive-font-size(map-get($font-breakpoints, $breakpoint));
-    } @else {
-        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Please make sure it is defined in `$font-breakpoints` map.";
-    }
-}
-
-@function responsive-font-size-fixed($number) {
-    @return responsive-size($number * ($screenFontSize/$mobileFontSize), $screenFontSize, em, 2);
-}
-
 // Titles
-// General
 $titles-font-sizes: (
-        h1: 140,
-        h2: 100,
+        h1: 100,
+        h2: 80,
         h3: 60,
-        h4: 44,
-        h5: 33,
+        h4: 50,
+        h5: 24,
 );
 
 // Mobile
 $titles-font-sizes-mobile: (
-        h2: 40,
 );
 
 // Colors
+// General
 $color-full-black: #000; // black
 $color-dark-black: #151515; // dark black
 $color-light-black: #2c2c2c; // light-black
@@ -114,15 +125,17 @@ $color-dark-white: #eaeaea; // dark-white
 $color-light-white: #f3f3f3; // light-white
 $color-full-white: #fff; // full-white
 
-// Application colors
-$color-dark-brown: #1b1613; // dark-brown (header)
-$color-brown: #976e1d; // brown (active)
-$color-light-brown: #a98845; // light-brown (active)
-$color-bg-black: #29231e; // bg black
-$color-dirty-brown: #948678; // dirty brown (copyright)
+// Application
+$color-app-active: #fde3e0; // active (rose)
+$color-app-alternative: #f3f3f3; // active (rose)
+$color-app-light: #fff; // light
+$color-app-dark: #000; // dark
+$color-app-gray: #999999; // gray
 
-$color-animation-overlay: $color-brown; // title overlay color
+// Animation
+$color-animation-overlay: $color-app-light; // title overlay color
 
+// Animations
 // Transitions
 $transition-duration-fast: .4s;
 $transition-duration-slow: 3s;
@@ -131,16 +144,23 @@ $transition-timing-function: $easeInSine;
 // Scale
 $scaleMultiply: 1.2;
 
-// Space variables
-// Grid breakpoints
-$space-breakpoints: (
-        sm: 16,
-        md: 30,
-        lg: 40,
-);
-
-// Section spaces
-$sectionSpace: 240;
-$contentSpace: 100;
+// Spaces
+// General
+$sectionSpace: 160;
+$contentSpace: 90;
 $contentSpaceMobile: 60;
-$titleSpace: 50;
+$contentInnerSpace: 30;
+
+// Additional
+$headingSpace: 50;
+$itemSpace: 30;
+$innerSpaceLR: 50;
+$btnSpaceLR: 30;
+
+// Signature
+$signatureHeight: 65;
+
+// Btn sizes
+$btnLineHeight: 1.25;
+$btnFontSize: 20;
+$btnSpaceTb: 15px;

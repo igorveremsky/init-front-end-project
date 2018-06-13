@@ -1,3 +1,35 @@
+/*
+xxxl -
+xxl -
+xl - (1200px) > screen; ipad pro vertical
+lg - (992px) > ipad horizonal; ipad pro vertical;
+md - (740px) > ipad vertical; iphone X, 6 Plus, 7 Plus, 8 Plus vertical; pixel 2 xl horizontal;
+sm - (560px) > iphone 5, SE, 6, 7, 8 horizontal; pixel 2 vertical; < all phones vertical
+*/
+// Grid breakpoints
+$grid-breakpoints: (
+        xs: 0,
+        sm: 560px,
+        md: 740px,
+        lg: 992px,
+        xl: 1200px,
+);
+
+// Grid containers
+// Content variables
+$gutterWidth: 30;
+$screenContainerInnerWidth: 1880;
+$screenContainerWidth: (responsive-size-width($screenContainerInnerWidth) + responsive-size-width($gutterWidth));
+$tabletContainerWidth: 720;
+$container-max-widths: (
+        sm: responsive-size-width-tablet($tabletContainerWidth),
+        xl: responsive-size-width($screenContainerWidth),
+);
+
+// Grid columns
+$grid-columns: 12;
+$grid-gutter-width: responsive-size-width($gutterWidth);
+
 html {
     box-sizing: border-box;
     -ms-overflow-style: scrollbar;
@@ -22,7 +54,6 @@ html {
 // Container widths
 //
 // Set the container width, and override it for fixed navbars in media queries.
-
 @if $enable-grid-classes {
     .container {
         @include make-container();
@@ -34,14 +65,13 @@ html {
 $grid-breakpoints: (
         xs: 0,
         sm: 560px,
-        md: 768px,
+        md: 740px,
         lg: 992px,
 );
 
 // Row
 //
 // Rows contain and clear the floats of your columns.
-
 @if $enable-grid-classes {
     .row {
         @include make-row();
@@ -59,7 +89,6 @@ $grid-breakpoints: (
 
 // Utilities for common `display` values
 //
-
 @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
         $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
@@ -73,7 +102,6 @@ $grid-breakpoints: (
 // Flex variation
 //
 // Custom styles for additional flex alignment options.
-
 @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
         $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
@@ -94,7 +122,17 @@ $grid-breakpoints: (
 
 .w-100 {
     width: 100%;
-}/*
+}
+
+// Grid breakpoints
+$grid-breakpoints: (
+        xs: 0,
+        sm: 560px,
+        md: 740px,
+        lg: 992px,
+        xl: 1200px,
+);
+/*
 @import "../../../node_modules/bootstrap-4-grid/scss/grid/bootstrap-grid";
 @import "../../../node_modules/bootstrap-4-grid/scss/sizing/utilities/sizing";
 @import "../../../node_modules/bootstrap-4-grid/scss/layout/utilities/spacing";
@@ -137,18 +175,11 @@ $colFixedGutterBreakPoint: map_get($grid-breakpoints, $colFixedGutterBreakPointK
 }
 
 .container {
-    > .row {
-        &:not(:last-child) {
-            @extend %content-padding-b;
-        }
-        &:not(.no-space) {
-            > .w-100 {
-                @extend %content-padding-b;
-            }
-            .w-100.d-lg-none,
-            .w-100.d-md-none {
-                @include space-responsive-padding-b($contentSpaceMobile);
-            }
+    @include row-content-space();
+    .row {
+        @include row-content-space($contentInnerSpace);
+        .row {
+            width: 100%;
         }
     }
 }

@@ -1,24 +1,101 @@
 ul {
-    &.horizontal {
-        @include display-flex();
-        li:first-of-type {
-            margin-left: 0;
-        }
-    }
-    &.item {
-        &-btn {
-            &-figure {
-                &-circle {
-                    li a {
-                        @extend .btn-figure-circle
-                    }
+    li {
+        a {
+            span {
+                &.icon {
+                    @include space-responsive-margin-l(10);
+                }
+                &.number {
+                    background: $color-app-light;
+                    color: $color-app-dark;
+                    line-height: 1;
+                    @extend %font-style-general;
+                    @include space-responsive-padding-round(5px, 10px);
                 }
             }
         }
-        &-social-icon {
-            &-figure {
-                li a {
-                    @extend .social-icon-figure
+    }
+    &.horizontal {
+        display: flex;
+        > li {
+            @include space-responsive-margin-l($itemSpace);
+            &:first-of-type {
+                margin-left: 0 !important;
+            }
+        }
+        &.social {
+            > li {
+                @include space-responsive-margin-l(50);
+                a {
+                    font-size: responsive-font-size(50);
+                }
+            }
+        }
+    }
+    &.vertical {
+        > li {
+            @include space-responsive-margin-b($itemSpace);
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+    &.columns {
+        &-2 {
+            display: flex;
+            flex-wrap: wrap;
+            > li {
+                flex: 0 0 50%;
+                max-width: 50%;
+                @extend %text-ellipsis;
+                @include breakpoint(sm) {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+                &:nth-child(2n) {
+                    @include space-responsive-margin-b($itemSpace);
+                }
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    position: relative;
+    > li {
+        ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 100%;
+            li {
+                a {
+                    @extend %text-ellipsis;
+                }
+            }
+        }
+        &.child-fullwidth {
+            ul {
+                display: none;
+            }
+        }
+        &:not(.child-fullwidth) {
+            position: relative;
+            ul {
+                left: -1*responsive-size-width($innerSpaceLR);
+                @include space-responsive-padding-lr($innerSpaceLR);
+                @include transition-custom(opacity, .5s, $linear);
+                visibility: hidden;
+                opacity: 0;
+                &:hover {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+            &:hover {
+                ul {
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
         }

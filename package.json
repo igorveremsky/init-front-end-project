@@ -17,9 +17,10 @@
     "gsap": "^1.20.4",
     "hamburgers": "^0.9.3",
     "is-in-viewport": "^3.0.0",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "jquery.waitforimages": "^2.4.0"
   },
   "dependencies": {
-    "npm": "^5.8.0"
+    "npm": "^5.10.0"
   }
 }

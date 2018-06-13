@@ -36,24 +36,3 @@ $fontWeightPath: (
 @include iv-font-face(500);
 @include iv-font-face(400);
 @include iv-font-face(300);
-
-/*-------------------------------------------------------------------------
-Anglecia Pro
-*/
-$includeFontName: 'AngleciaPro';
-
-$fontWeightPath: (
-        500: '#{$includeFontName}/AngleciaProDisplayMedium',
-        400: '#{$includeFontName}/AngleciaProDisplayRegular',
-        300: '#{$includeFontName}/AngleciaProDisplayLight',
-);
-
-@mixin iv-font-face($fontWeight) {
-    @include font-face($includeFontName, font-files(
-                    '#{map-get($fontWeightPath, $fontWeight)}.otf'
-    ), false, $fontWeight);
-}
-
-@include iv-font-face(500);
-@include iv-font-face(400);
-@include iv-font-face(300);

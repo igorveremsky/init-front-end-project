@@ -1,62 +1,32 @@
-// _decimal.scss | MIT License | gist.github.com/terkel/4373420
-
-// Round a number to specified digits.
-//
-// @param  {Number} $number A number to round
-// @param  {Number} [$digits:0] Digits to output
-// @param  {String} [$mode:round] (round|ceil|floor) How to round a number
-// @return {Number} A rounded number
-// @example
-//     decimal-round(0.333)    => 0
-//     decimal-round(0.333, 1) => 0.3
-//     decimal-round(0.333, 2) => 0.33
-//     decimal-round(0.666)    => 1
-//     decimal-round(0.666, 1) => 0.7
-//     decimal-round(0.666, 2) => 0.67
-//
-@function decimal-round($number, $digits: 0, $mode: round) {
-    $n: 1;
-    // $number must be a number
-    @if type-of($number) != number {
-        @warn '#{ $number } is not a number.';
-        @return $number;
-    }
-    // $digits must be a unitless number
-    @if type-of($digits) != number {
-        @warn '#{ $digits } is not a number.';
-        @return $number;
-    } @else if not unitless($digits) {
-        @warn '#{ $digits } has a unit.';
-        @return $number;
-    }
-    @for $i from 1 through $digits {
-        $n: $n * 10;
-    }
-    @if $mode == round {
-        @return round($number * $n) / $n;
-    } @else if $mode == ceil {
-        @return ceil($number * $n) / $n;
-    } @else if $mode == floor {
-        @return floor($number * $n) / $n;
-    } @else {
-        @warn '#{ $mode } is undefined keyword.';
-        @return $number;
-    }
+// Responsive Size
+// Screen
+@function responsive-size-width($number) {
+    @return calculate($number, vw, $screenWidth);
 }
 
-@function responsive-size($number, $design-size: 2560, $mode: vw, $digits: 4) {
-    // $number must be a number
-    @if type-of($number) != number {
-        @warn '#{ $number } is not a number.';
-        @return $number;
-    }
+@function responsive-size-height($number) {
+    @return calculate($number, vh, $screenHeight);
+}
 
-    $responsive-dimension: 100vw;
-    @if $mode == vh {
-        $responsive-dimension: 100vh;
-    } @else if $mode == em {
-        $responsive-dimension: 1em;
-    }
+// Tablet
+@function responsive-size-width-tablet($number) {
+    @return calculate($number, vw, $tabletWidth);
+}
 
-    @return decimal-round($number/$design-size, $digits) * $responsive-dimension;
+@function responsive-size-height-tablet($number) {
+    @return calculate($number, vh, $tabletHeight);
+}
+
+// Mobile
+@function responsive-size-width-mobile($number) {
+    @return calculate($number, vw, $phoneWidth);
+}
+
+@function responsive-size-height-mobile($number) {
+    @return calculate($number, vh, $phoneHeight);
+}
+
+// Font Size
+@function responsive-font-size($number) {
+    @return calculate($number, em, $screenFontSize, 2);
 }

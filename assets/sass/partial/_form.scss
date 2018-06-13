@@ -1,0 +1,78 @@
+form {
+    position: relative;
+    max-width: 100%;
+    %input {
+        outline: none;
+        background: none;
+        background-color: $color-app-alternative;
+        @include appearance(none);
+        @extend %font-style-general;
+        @extend %content-inner-space;
+        @extend %btn-size-md;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+    }
+    %input-border-hover {
+        border: solid 1px $color-app-alternative;
+        @extend %transition-border_color-fast;
+        &:hover {
+            border-color: $color-app-gray;
+        }
+        &:focus {
+            border-color: $color-app-dark;
+        }
+    }
+    input, textarea, select {
+        @extend %input;
+        @extend %input-border-hover;
+        text-transform: none;
+        @extend %animation-appear-b;
+    }
+    input:not([type="submit"]), select {
+        @extend %text-ellipsis;
+    }
+    textarea {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 45px;
+        max-height: 300px;
+    }
+    input[type="submit"] {
+        cursor: pointer;
+    }
+    select {
+        border: solid 1px $color-app-gray;
+        background: $color-app-light url('../img/geometric/arrow-down-gray.svg') 95% center no-repeat;
+        background-size: auto 10px;
+    }
+    &.subscribe-form {
+        input[type="email"] {
+            background: none;
+            padding-left: 0;
+            padding-right: 70px;
+            font-style: italic;
+            border: none;
+            border-bottom: solid 1px $color-app-dark;
+            @extend %transition-border_color-fast;
+            &:hover, &:focus {
+                border-color: $color-app-gray;
+            }
+        }
+        input[type="submit"] {
+            position: absolute;
+            width: auto;
+            right: 0;
+            bottom: 0;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            padding-right: 0;
+            padding-left: 0;
+            border: none;
+            background: none;
+            text-transform: uppercase;
+            @extend %font-style-title-alternative;
+            @extend %hover-color-gray;
+        }
+    }
+}

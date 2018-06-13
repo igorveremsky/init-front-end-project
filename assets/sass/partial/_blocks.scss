@@ -4,17 +4,30 @@
 }
 %block-thumbnail {
     .thumbnail {
-        @extend %inner-glow-brown-sm;
-        @extend %animation-overlay-b;
         overflow: hidden;
+        position: relative;
+        @extend %animation-overlay-b;
         img {
-            @extend %transition-transform-slow;
+            &.current {
+                opacity: 1;
+                @extend %transition-opacity-fast;
+            }
+            &.hover {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                @extend %transition-opacity-fast;
+            }
         }
-    }
-    &:hover {
-        .thumbnail {
+        &:hover {
             img {
-                @include transform(scale($scaleMultiply));
+                &.current {
+                    opacity: 0;
+                }
+                &.hover {
+                    opacity: 1;
+                }
             }
         }
     }
@@ -24,19 +37,24 @@
     display: inline-flex;
     @extend %font-style-title;
     @include responsive-font-size-title(h4);
-    @extend %text-ellipsis;
 }
 %block-title-additional {
     display: inline-flex;
-    @extend %font-style-general;
-    font-size: 1em;
+    @extend %font-style-title-alternative;
+    font-weight: 700;
+    @include responsive-font-size-title(h5);
     @extend %text-ellipsis;
 }
 %block-title-info {
-    @extend %font-style-title;
-    @extend %font-size-sm;
-    color: $color-light-brown;
-    @extend %text-ellipsis;
+    display: inline-flex;
+    @extend %font-style-general;
+    font-size: 1em;
+}
+%block-text-hint {
+    display: inline-flex;
+    @extend %font-style-general;
+    font-size: 1em;
+    color: $color-app-gray;
 }
 %block-titles {
     .title {
@@ -65,144 +83,156 @@
 .block {
     &-style {
         &-1 {
-            position: relative;
+            width: 100%;
             @extend %block-thumbnail;
-            .content {
-                position: absolute;
+            .thumbnail {
                 width: 100%;
-                bottom: 0;
-                @extend %animation-appear-b;
-                @extend %bg-transparent-brown;
-                @extend %block-inner-space-round;
-                .title {
-                    display: inline-flex;
-                    @extend %font-style-general;
-                    @include responsive-font-size-title(h5);
+                &:not(:first-child) {
+                    @include space-responsive-margin-t($contentInnerSpace);
                 }
-                hr {
-                    max-width: responsive-size-width(65);
-                    margin-left: 0;
-                    margin-right: auto;
-                    @extend %transition-transform-fast;
-                    @include space-responsive-margin-tb($titleSpace);
-                }
-                .excerpt {
-                    @extend %font-style-title;
-                }
-                .link {
-                    @extend %font-style-title;
-                }
-                @include breakpoint(sm) {
-                    .link, hr {
-                        display: none;
-                    }
-                }
-            }
-            &:hover {
-                .content {
-                    hr {
-                        @include transform(scale($scaleMultiply, 0.5) translateX(((-(1-$scaleMultiply))/4)*100%));
-                    }
-                }
-            }
-        }
-        &-2 {
-            @extend %block-horizontal;
-            @extend %block-thumbnail;
-            align-items: center;
-            .content {
-                @extend %animation-appear-b;
-                .title {
-                    @include responsive-font-size-title(h4);
-                    @extend %title-margin-b;
-                }
-                .excerpt {
-                    @extend %title-margin-b;
-                }
-                .link {
-                    @extend .btn-horizontal-default;
-                }
-            }
-        }
-        &-3 {
-            @extend %block-horizontal;
-            flex-wrap: nowrap;
-            align-items: center;
-            @extend %bg-transparent-black;
-            @extend %block-inner-space-lr;
-            @include space-responsive-padding-tb(40);
-            @extend %animation-appear-b;
-            border-bottom: solid 1px $color-light-black;
-            @extend %block-titles;
-            .title {
-                &-additional {
-                    color: $color-full-white;
-                }
-                &-info {
-                    @include space-responsive-width(60, mr);
+                &:first-child {
+                    @include space-responsive-margin-b($contentInnerSpace);
                 }
             }
             .content {
-                margin-right: auto;
-                max-width: 80%;
-            }
-            .thumbnail {
-                .geometric-css {
-                    @extend %transition-transform-fast;
+                > *:not(.title-large) {
+                    @extend %animation-appear-b;
                 }
-            }
-            &:hover {
-                .thumbnail {
-                    .geometric-css {
-                        @include transform(scale($scaleMultiply));
+                .title {
+                    &-large {
+                        font-size: responsive-font-size(240);
+                        @extend %font-style-title;
+                        @extend %animation-overlay-l;
+                        text-align: center;
+                        @include breakpoint(sm) {
+                            font-size: responsive-font-size(140);
+                        }
                     }
                 }
-            }
-        }
-        &-4 {
-            @extend %block-horizontal;
-            flex-wrap: nowrap;
-            align-items: center;
-            @extend %bg-transparent-black;
-            @extend %block-inner-space-round;
-            @extend %box-shadow-transparent-brown-sm;
-            @extend %block-titles;
-            @media (orientation: portrait) and (max-width: map-get($grid-breakpoints, sm)) {
-                flex-wrap: wrap;
-            }
-            .content {
-                padding-left: 0;
-                @extend %animation-appear-b;
-                .title {
+                @extend %block-titles;
+                .text {
                     &-main {
-                        @extend %title-margin-b;
                     }
                 }
                 .excerpt {
-                    @extend %title-margin-b;
-                    @include space-responsive-margin-r(90);
-                    @media (orientation: portrait) and (max-width: map-get($grid-breakpoints, sm)) {
-                        margin-right: 0;
+                    &-main {
+                        @extend %text-max-center;
+                    }
+                }
+                .link {
+                    &-text {
+                        @extend %text-link-hint;
                     }
                 }
             }
-            .thumbnail {
-                padding-right: 0;
-                border-radius: 50%;
+        }
+    }
+    &-product {
+        &-slider {
+            width: 100%;
+            .current {
                 @extend %animation-overlay-b;
-                @media (orientation: portrait) and (max-width: map-get($grid-breakpoints, sm)) {
-                    order: 0;
-                    @include space-responsive-padding-b($titleSpace);
+            }
+            .thumbnails {
+                @extend %animation-appear;
+                %arrow {
+                    cursor: pointer;
+                    svg {
+                        width: 15px;
+                        height: auto;
+                        margin-left: auto;
+                        margin-right: auto;
+                        path {
+                            @include transition-custom(stroke);
+                        }
+                    }
+                    &:hover {
+                        svg {
+                            path {
+                                stroke: $color-app-gray;
+                            }
+                        }
+                    }
                 }
-                img {
-                    @extend %transition-transform-fast;
+                .arrow {
+                    &-prev {
+                        @extend %arrow;
+                        @include space-responsive-margin-b($contentInnerSpace);
+                        &:hover {
+
+                        }
+                    }
+                    &-next {
+                        @extend %arrow;
+                        @include space-responsive-margin-t($contentInnerSpace);
+                    }
+                }
+                .list {
+                    @extend %content-vertical-center;
+                }
+                .thumbnail {
+                    max-width: 45px;
+                    position: relative;
+                    overflow: hidden;
+                    &:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: solid 1px $color-app-gray;
+                        @include transform(translateY(110%));
+                        @extend %transition-transform-fast;
+                    }
+                    img {
+                        @extend %transition-transform-fast;
+                        @include transform(scale(.8));
+                        &:hover {
+                            @include transform(scale(.9));
+                        }
+                    }
+                    &.active {
+                        &:after {
+                            @include transform(translateY(0));
+                        }
+                        img {
+                            @include transform(scale(1));
+                        }
+                    }
                 }
             }
-            &:hover {
-                .thumbnail {
-                    img {
-                        @include transform(scale($scaleMultiply));
-                    }
+        }
+        &-info {
+            width: 100%;
+            @extend %block-titles;
+            > * {
+                @extend %animation-appear-b;
+            }
+            .text {
+                &-hint {
+                    @extend %block-text-hint;
+                }
+            }
+            a.text {
+                &-hint {
+                    text-decoration: underline;
+                    @extend %hover-color-dark;
+                }
+            }
+            .price {
+                &-main {
+                    @extend %font-style-title;
+                    font-size: responsive-font-size(40);
+                }
+            }
+            form.add-to-cart:not(:last-child) {
+                @include space-responsive-margin-b($contentSpace);
+            }
+            .product-info-heading {
+                .w-100.d-lg-none {
+                    padding-bottom: 0 !important;
                 }
             }
         }

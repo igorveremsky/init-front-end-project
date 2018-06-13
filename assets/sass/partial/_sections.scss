@@ -1,0 +1,110 @@
+section {
+    &.fullheight {
+        height: 100vh;
+        > div:first-child {
+            height: 100%;
+            > div.row {
+                height: 100%;
+            }
+        }
+    }
+    background-color: $color-app-light;
+    &.banner {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: $color-app-active;
+        @extend %section-text-light;
+        .content {
+            @include space-responsive-margin-tb(210);
+            @extend %content-vertical-center;
+            @extend %animation-appear;
+            .title {
+                &-main {
+                    @include responsive-font-size-title(h2);
+                }
+            }
+        }
+        &-intro {
+            .content {
+                @extend %content-inner-space;
+                border: solid 1px rgba($color-app-light, .5);
+            }
+        }
+    }
+    &.content {
+        @include space-responsive-padding-tb($sectionSpace);
+        .heading {
+            @extend %content-vertical-center;
+            .title {
+                &-main {
+                    text-transform: uppercase;
+                    @include responsive-font-size-title(h3);
+                    @include space-responsive-margin-b($contentInnerSpace);
+                    @extend %animation-overlay-l;
+                }
+            }
+            .excerpt {
+                &-main {
+                    @extend %text-max-center;
+                    @extend %animation-appear;
+                    @include breakpoint(md) {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+        .content {
+            &-html {
+                h1,h2,h3,h4,h5 {
+                    @include space-responsive-margin-b($contentInnerSpace);
+                    @extend %animation-appear-b;
+                }
+                p:not(:last-child),
+                > a:not(:last-child) {
+                    @extend %title-margin-b;
+                }
+                p, > a {
+                    @extend %animation-appear-b;
+                }
+                .img-wrap {
+                    @extend %animation-overlay-b;
+                }
+            }
+        }
+    }
+    &.content-footer {
+        @include space($headerSpace, vh, ptb);
+        .content {
+            .text {
+                &-hint {
+                    font-style: italic;
+                    @include responsive-font-size-breakpoint(sm);
+                }
+            }
+        }
+        .logo {
+            @extend %logo-wrap;
+        }
+    }
+    // Backgrounds
+    &.bg {
+        &-color {
+            &-active {
+                background-color: $color-app-active;
+            }
+            &-alternative {
+                background-color: $color-app-alternative;
+            }
+        }
+    }
+    // Signature
+    &.signature {
+        &-top {
+            @extend %signature;
+            &:before {
+                top: responsive-size-height(($sectionSpace - $signatureHeight)/2);
+            }
+        }
+    }
+}
